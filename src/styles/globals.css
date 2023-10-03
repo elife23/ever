@@ -26,6 +26,10 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+* {
+  font-family: monospace;
+  color: #33332D;
+}
 
 /**** Fonts ****/
 
@@ -135,19 +139,19 @@ body {
 ************ Monospace ************
 **********************************/
 @font-face {
-  font-family: "monospace.bold";
+  font-family: "monospace-bold";
   /* font-weight: bold; */
   src: url("/fonts/monospace.bold.ttf") format("ttf");
 }
 
 @font-face {
-  font-family: "monospace.medium";
+  font-family: "monospace-medium";
   /* font-weight:normal; */
   src: url("/fonts/monospace.medium.ttf") format("ttf");
 }
 
 @font-face {
-  font-family: "monospace.oblique";
+  font-family: "monospace-oblique";
   /* font-weight: normal;
   font-style: italic; */
   src: url("/fonts/monospace.oblique.ttf") format("ttf");

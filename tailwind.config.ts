@@ -15,6 +15,7 @@ const config: Config = {
     colors: {
         "primary": '#5Abb71',
         "secondary": '#33332D',
+        "tertiary": '#E1E1E1',
       },
       fontFamily: {
         'ibm-plex-mono': [
