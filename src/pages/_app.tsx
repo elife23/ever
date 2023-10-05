@@ -1,3 +1,4 @@
+import MainFooter from '@/components/global/mainFooter'
 import MainNavBar from '@/components/global/mainNavBar'
 import '@/styles/globals.css'
 import { NextUIProvider } from '@nextui-org/react'
@@ -9,6 +10,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <NextUIProvider>
         <MainNavBar />
         <Component {...pageProps} />
+        <MainFooter />
       </NextUIProvider>
     </>
   )
