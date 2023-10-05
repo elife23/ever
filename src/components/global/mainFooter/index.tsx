@@ -69,19 +69,19 @@ function MainFooter({ }: Props) {
                                 </li>
 
                                 <div className="flex  w-full py-1 items-center sm:justify-start gap-x-unit-xs sm:mt-0">
-                                    <a href="#" className=" text-gray-500 hover:text-secondary dark:hover:text-white group p-1 ">
+                                    <a href="#" className=" text-gray-500 hover:text-secondary dark:hover:text-white group p-1 border-2 border-secondary ">
                                         <BsFacebook className="text-secondary w-5 h-5 group-hover:-translate-y-1 group-hover:text-primary transition-all duration-300" />
                                         {/* <span className="sr-only">Discord community</span> */}
                                     </a>
-                                    <a href="#" className=" text-gray-500 hover:text-secondary dark:hover:text-white group p-1 ">
+                                    <a href="#" className=" text-gray-500 hover:text-secondary dark:hover:text-white group p-1 border-2 border-secondary">
                                         <BsTwitter className="text-secondary w-5 h-5 group-hover:-translate-y-1 group-hover:text-primary transition-all duration-300" />
                                         {/* <span className="sr-only">Discord community</span> */}
                                     </a>
-                                    <a href="#" className=" text-gray-500 hover:text-secondary dark:hover:text-white group p-1 ">
+                                    <a href="#" className=" text-gray-500 hover:text-secondary dark:hover:text-white group p-1 border-2 border-secondary">
                                         <BsInstagram className="text-secondary w-5 h-5 group-hover:-translate-y-1 group-hover:text-primary transition-all duration-300" />
                                         {/* <span className="sr-only">Discord community</span> */}
                                     </a>
-                                    <a href="#" className=" text-gray-500 hover:text-secondary dark:hover:text-white group p-1 ">
+                                    <a href="#" className=" text-gray-500 hover:text-secondary dark:hover:text-white group p-1 border-2 border-secondary">
                                         <BsDiscord className="text-secondary w-5 h-5 group-hover:-translate-y-1 group-hover:text-primary transition-all duration-300" />
                                         {/* <span className="sr-only">Discord community</span> */}
                                     </a>
