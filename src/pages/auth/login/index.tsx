@@ -1,6 +1,6 @@
 import { Avatar, AvatarGroup, Button, Divider, Input } from '@nextui-org/react'
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // Images
 import googleSvg from "../../../../public/images/icons/google-color.svg";
@@ -8,10 +8,20 @@ import eyeClosedSvg from "../../../../public/images/icons/eye-off.svg";
 import eyeSvg from "../../../../public/images/icons/eye.svg";
 import logo from "../../../../public/images/logo.png";
 import Link from 'next/link';
+import { signIn, useSession } from 'next-auth/react';
+import { AuthCheck } from '@/utils/auth';
+import { redirect } from 'next/navigation';
+import { useRouter } from 'next/router';
 
 type Props = {}
 
 function Login({ }: Props) {
+
+
+    // const session = AuthCheck();
+    const router = useRouter();
+    
+    const { data: session } = useSession();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [hidePassword, setHidePassword] = useState(true);
@@ -21,10 +31,13 @@ function Login({ }: Props) {
     const [passwordVerif, setPasswordVerif] = useState(false);
 
     async function handleLogin() {
+
+
+
         await setIsLogingIn(true);
         console.log(email, password, rememberMe);
         // Write a condition to verify if email is empty or not and if password is empty and if password is less than 8 characters
-        if(email == "") {
+        if (email == "") {
             setEmailVerif(true);
         } else if (password == "" || password.length < 8) {
             setPasswordVerif(true);
@@ -35,6 +48,13 @@ function Login({ }: Props) {
         // Handle Response and Data's from the API 
     }
 
+    useEffect(() => {
+        session ? console.log(session.user) : console.log("no body");
+    }, []);
+
+    if (session) {
+        router.replace("/")
+    }
     return (
         <div className="flex w-screen h-[95vh] lg:h-[90vh] bg-white">
             {/* Left side of the login page */}
@@ -125,7 +145,7 @@ function Login({ }: Props) {
 
                         {/* Login buttons section */}
                         <div>
-                            <Button className="bg-primary w-full text-white" isLoading={isLogingIn} variant="flat" onClick={() => { handleLogin() }}  
+                            <Button className="bg-primary w-full text-white" isLoading={isLogingIn} variant="flat" onClick={() => { handleLogin() }}
                             // disabled={email == '' || password == '' || password.length < 8 ? true : false} 
                             >
                                 {isLogingIn == false ? "Login" : "Loading"}
@@ -135,7 +155,7 @@ function Login({ }: Props) {
                             <div className="h-0.5 bg-tertiary w-1/2" /> <span className="md:text-base font-semibold mx-2">Or</span><div className="h-0.5 bg-tertiary w-1/2" />
                         </div>
                         <div>
-                            <Button className="w-full font-bold bg-white border-2 py-4">
+                            <Button className="w-full font-bold bg-white border-2 py-4" onClick={() => signIn("google")}>
                                 <Image src={googleSvg} className="h-5 w-5 text-secondary" alt="google-svg" />
                                 Login With google
                             </Button>

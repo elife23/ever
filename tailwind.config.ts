@@ -49,7 +49,8 @@ const config: Config = {
   },
   darkMode: "class",
   plugins: [
-    nextui()
+    nextui(),
+    require("daisyui"),
   ],
 }
 export default config

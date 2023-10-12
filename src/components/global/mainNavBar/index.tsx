@@ -4,6 +4,7 @@ import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NavbarMen
 import Image from "next/image";
 // import {AcmeLogo} from "./AcmeLogo.jsx";
 import logo from "../../../../public/images/logo.png";
+import { signOut } from "next-auth/react";
 
 export default function MainNavBar() {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -91,8 +92,8 @@ export default function MainNavBar() {
                     className="sm:hidden"
                 />
             </NavbarContent>
-            <NavbarMenu>
-                {menuItems.map((item, index) => (
+            <NavbarMenu hidden={isMenuOpen == true ? true : false}>
+                {/* {menuItems.map((item, index) => (
                     <NavbarMenuItem key={`${item}-${index}`}>
                         <Link
                             color={
@@ -105,7 +106,30 @@ export default function MainNavBar() {
                             {item}
                         </Link>
                     </NavbarMenuItem>
-                ))}
+                ))} */}
+
+                <NavbarMenuItem>
+                    <Link
+                        color={"foreground"}
+                        className="w-2/3 hover:text-white transition-all duration-150 hover:bg-primary p-2 rounded-lg "
+                        href="#"
+                        size="lg"
+                    >
+                        Dashboard
+                    </Link>
+                </NavbarMenuItem>
+                <hr />
+                <NavbarMenuItem>
+                    <Link
+                        color={"danger"}
+                        className="w-2/3 hover:text-white transition-all duration-150 hover:bg-danger p-2 rounded-lg "
+                        href="#"
+                        size="lg"
+                        onClick={() => { setIsMenuOpen(false); signOut({ redirect: true }); }}
+                    >
+                        Log Out
+                    </Link>
+                </NavbarMenuItem>
             </NavbarMenu>
         </Navbar>
     );

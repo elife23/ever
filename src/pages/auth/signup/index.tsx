@@ -8,6 +8,7 @@ import eyeSvg from "../../../../public/images/icons/eye.svg";
 import googleSvg from "../../../../public/images/icons/google-color.svg";
 import logo from "../../../../public/images/logo.png";
 import Link from 'next/link';
+import { AuthCheck } from '@/utils/auth';
 
 type Props = {}
 
@@ -28,6 +29,7 @@ function Signup({ }: Props) {
     // Redirect to the login page
 
   }
+
 
   return (
     <div className="flex w-screen h-[95vh] lg:h-[93vh] bg-white">
