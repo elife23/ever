@@ -7,16 +7,17 @@ import { SessionProvider } from 'next-auth/react'
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import DashboardLayout from './dashboard/DashboardLayout'
+import dashboardPaths from '@/utils/routes/dashboard_routes'
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const currentPage = router.pathname;
 
   // All routes of our dashboard section
-  const dashboardPaths = ["/dashboard","/dashboard/admin/Users", "/dashboard/admin/Meeting", "/dashboard/Records"];
+  const dashboardRoutes = Object.values(dashboardPaths);
 
   // Verify if the current page is a page of the dashboard
-  const isDashboardPage = dashboardPaths.includes(currentPage);
+  const isDashboardPage = dashboardRoutes.includes(currentPage);
   
   if (isDashboardPage) {
     return (

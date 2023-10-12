@@ -2,42 +2,99 @@ import Image from 'next/image'
 import React from 'react'
 import logo from "../../../../public/images/logo.png";
 import Link from 'next/link';
+import dashboardPaths from '@/utils/routes/dashboard_routes';
+import clientPaths from '@/utils/routes/client_routes';
+import ImportedSvgs from '@/utils/ImportedSvgs';
 
 type Props = {}
 
 function LeftSideBar({ }: Props) {
     return (
         <>
-            <aside className="flex flex-col w-64 h-screen px-5 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
-                <Link href="/" className='w-max'>
+            <aside className="overflow-y-hidden flex flex-col w-64 h-screen px-5 bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
+                <Link href={clientPaths.home} className='w-max'>
                     {/* <Image className="w-16 h-16" src={logo} alt="logo" /> */}
                     <Image className="w-20 h-20" src={logo} alt="logo" />
 
                 </Link>
 
-                <div className="flex flex-col justify-between flex-1 mt-6">
+                <div className="flex flex-col justify-between flex-1 mt-6 overflow-y-auto overflow-x-hidden pb-4">
                     <nav className="-mx-3 space-y-6 ">
+                        {/* Users View */}
                         <div className="space-y-3 ">
-                            <label className="px-3 text-xs text-gray-500 uppercase dark:text-gray-400">analytics</label>
+                            <label className="px-3 text-xs text-gray-500 uppercase dark:text-gray-400">Votre espace</label>
 
-                            <Link className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700" href="#">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-5 h-5">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605" />
-                                </svg>
+                            <Link className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 " href={dashboardPaths.home} >
+                                <Image src={ImportedSvgs.user} alt="User" className="w-5 h-5" />
 
-                                <span className="mx-2 text-sm font-medium">My account</span>
+                                <span className="mx-2 text-sm font-medium">Mon compte</span>
                             </Link>
 
-                            <Link className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700" href="#">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-5 h-5">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6" />
-                                </svg>
+                            <Link className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700" href={dashboardPaths.userMeetings} >
+                                <Image src={ImportedSvgs.meeting} alt="User" className="w-5 h-5" />
 
-                                <span className="mx-2 text-sm font-medium">Preformance</span>
+                                <span className="mx-2 text-sm font-medium">Mes visioconférences</span>
+                            </Link>
+
+                            <Link className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700" href={dashboardPaths.userRecords} >
+                                <Image src={ImportedSvgs.record} alt="User" className="w-5 h-5" />
+
+                                <span className="mx-2 text-sm font-medium">Mes enregistrements</span>
                             </Link>
                         </div>
 
+                        {/* Admin view */}
                         <div className="space-y-3 ">
+                            <label className="px-3 text-xs text-gray-500 uppercase dark:text-gray-400">Votre espace</label>
+
+                            <Link className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 " href={dashboardPaths.home} >
+                                <Image src={ImportedSvgs.user} alt="User" className="w-5 h-5" />
+
+                                <span className="mx-2 text-sm font-medium">Mon compte</span>
+                            </Link>
+
+
+                        </div>
+
+                        <div className="space-y-3 ">
+                            <label className="px-3 text-xs text-gray-500 uppercase dark:text-gray-400">analyse</label>
+
+                            <Link className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700" href={dashboardPaths.adminMeetings}>
+                                <Image src={ImportedSvgs.meeting} alt="User" className="w-5 h-5" />
+
+                                <span className="mx-2 text-sm font-medium">Visioconférences</span>
+                            </Link>
+
+                            <Link className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700" href={dashboardPaths.adminRecords}>
+                                <Image src={ImportedSvgs.record} alt="User" className="w-5 h-5" />
+
+                                <span className="mx-2 text-sm font-medium">Enregistrements</span>
+                            </Link>
+
+                            <Link className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700" href={dashboardPaths.adminUser}>
+                                <Image src={ImportedSvgs.users} alt="User" className="w-5 h-5" />
+
+                                <span className="mx-2 text-sm font-medium">Utilisateurs</span>
+                            </Link>
+
+                            <Link className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700" href={dashboardPaths.adminLogs}>
+                                <Image src={ImportedSvgs.logs} alt="User" className="w-5 h-5" />
+
+                                <span className="mx-2 text-sm font-medium">Logs</span>
+                            </Link>
+                        </div>
+
+                        {/* Common */}
+                        <div className="space-y-3 border-t py-4">
+
+                            <Link className="flex items-center px-3 py-2 text-danger-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-danger/30 dark:hover:bg-danger/30 dark:hover:text-gray-200 hover:text-gray-700" href="#">
+                                <Image src={ImportedSvgs.logout} alt="User" className="w-5 h-5" />
+
+                                <span className="mx-2 text-sm font-medium">Se Déconnecter</span>
+                            </Link>
+                        </div>
+
+                        {/* <div className="space-y-3 ">
                             <label className="px-3 text-xs text-gray-500 uppercase dark:text-gray-400">content</label>
 
                             <Link className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700" href="#">
@@ -84,7 +141,7 @@ function LeftSideBar({ }: Props) {
 
                                 <span className="mx-2 text-sm font-medium">Setting</span>
                             </Link>
-                        </div>
+                        </div> */}
                     </nav>
                 </div>
             </aside>
