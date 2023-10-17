@@ -79,10 +79,10 @@ export default function MainNavBar() {
                         </Link>
                     </NavbarItem> */}
                 </NavbarContent>
-                <NavbarItem className="hidden lg:flex">
+                <NavbarItem className="hidden sm:flex">
                     <Link href="/auth/login/" className="text-primary">Login</Link>
                 </NavbarItem>
-                <NavbarItem>
+                <NavbarItem className="hidden sm:flex">
                     <Button as={Link} href="/auth/signup/" variant="flat" className="bg-primary text-white px-8">
                         Sign Up
                     </Button>
