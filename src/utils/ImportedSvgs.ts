@@ -10,6 +10,7 @@ import user from "../../public/images/icons/user.svg";
 import users from "../../public/images/icons/users.svg";
 import logs from "../../public/images/icons/logs.svg";
 import logout from "../../public/images/icons/logout.svg";
+import header from "../../public/images/header.svg";
 
 const ImportedSvgs = {
     eyeOff,
@@ -24,6 +25,7 @@ const ImportedSvgs = {
     users,
     logs,
     logout,
+    header
 }
 
 export default ImportedSvgs;
