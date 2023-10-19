@@ -19,9 +19,9 @@ function MainHeader({ }: Props) {
                 <Typography fontVariation='semibold' className="text-3xl md:text-5xl text-gray-800 dark:text-white lg:text-4xl" >Le moyen le plus simple pour les équipes de travail de collaborer.</Typography>
 
                 <Typography className="mt-3 text-gray-600 dark:text-gray-400 flex-col gap-y-3">
-                  <p>Collaborer sur des tableaux blancs en temps réel</p>
-                  <p>Plus d{"'"}installations que toutes les applications de diagramme de Confluence combinées</p>
-                  <p>Pour la sécurité des appels en vidéogroupe</p>
+                  Collaborer sur des tableaux blancs en temps réel <br />
+                  Plus d{"'"}installations que toutes les applications de diagramme de Confluence combinées <br />
+                  Pour la sécurité des appels en vidéogroupe
                 </Typography>
 
                 <button className="w-full px-5 py-2 mt-6 text-sm tracking-wider text-white uppercase transition-colors duration-300 transform bg-primary rounded-lg lg:w-auto hover:bg-primary focus:outline-none focus:bg-primary">Shop Now</button>
