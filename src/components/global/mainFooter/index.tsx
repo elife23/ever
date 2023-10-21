@@ -30,7 +30,7 @@ function MainFooter({ }: Props) {
         // </footer>
 
 
-        <footer className="bg-tertiary flex justify-center items-center dark:bg-gray-900 w-full md:py-8">
+        <footer className="bg-tertiary border-t flex justify-center items-center dark:bg-gray-900 w-full md:py-8">
             <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
                 <div className="md:flex md:justify-between">
                     <div className="mb-6 md:mb-0">

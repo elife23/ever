@@ -10,7 +10,9 @@ import user from "../../public/images/icons/user.svg";
 import users from "../../public/images/icons/users.svg";
 import logs from "../../public/images/icons/logs.svg";
 import logout from "../../public/images/icons/logout.svg";
-import header from "../../public/images/header.svg";
+import whiteboard from "../../public/images/whiteboard.svg";
+import visioconference from "../../public/images/Remote-meeting.svg";
+import screenRecording from "../../public/images/Screen-recording.svg";
 
 const ImportedSvgs = {
     eyeOff,
@@ -25,7 +27,9 @@ const ImportedSvgs = {
     users,
     logs,
     logout,
-    header
+    whiteboard,
+    visioconference,
+    screenRecording
 }
 
 export default ImportedSvgs;

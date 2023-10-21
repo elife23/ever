@@ -6,6 +6,7 @@ const dashboardPaths = {
     adminLogs: "/dashboard/admin/logs",
     userMeetings: "/dashboard/user/meetings",
     userRecords: "/dashboard/user/records",
+    meeting: "/dashboard/Meeting",
 }
 
 export default dashboardPaths;

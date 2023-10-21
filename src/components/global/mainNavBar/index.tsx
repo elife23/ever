@@ -119,7 +119,7 @@ export default function MainNavBar() {
                     </Link>
                 </NavbarMenuItem>
                 <hr />
-                <NavbarMenuItem>
+                {/* <NavbarMenuItem>
                     <Link
                         color={"danger"}
                         className="w-2/3 hover:text-white transition-all duration-150 hover:bg-danger p-2 rounded-lg "
@@ -129,7 +129,7 @@ export default function MainNavBar() {
                     >
                         Log Out
                     </Link>
-                </NavbarMenuItem>
+                </NavbarMenuItem> */}
             </NavbarMenu>
         </Navbar>
     );

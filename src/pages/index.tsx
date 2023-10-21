@@ -1,7 +1,14 @@
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import { Button } from '@nextui-org/react'
-import MainHeader from '@/components/atomic/organisme/Header/MainHeader';
+import MainHeader from '@/components/atomic/organisme/Home/MainHeader';
+import ProductiveSection from '@/components/atomic/organisme/Home/ProductiveSection';
+import VideoCallSection from '@/components/atomic/organisme/Home/VideoCallSection';
+import VisualisationSection from '@/components/atomic/organisme/Home/VIsualisationSection';
+import TrustedSection from '@/components/atomic/organisme/Home/TrustedSection';
+import Visualisation from '@/components/atomic/organisme/Home/Visualisation';
+import BeginYourJourney from '@/components/atomic/organisme/Home/BeginYourJourney';
+import PartsSection from '@/components/atomic/organisme/Home/PartsSection';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -14,6 +21,20 @@ export default function Home() {
     // </main>
     <main className="flex min-h-screen flex-col bg-[#DCE1DE] justify-between">
       <MainHeader />
+      <div className='py-5 w-full'/>
+      <ProductiveSection />
+      <div className='py-5 w-full'/>
+      <VideoCallSection />
+      <div className='py-5 w-full bg-white'/>
+      <VisualisationSection />
+      <div className='py-5 w-full '/>
+      <TrustedSection />
+      <div className='py-5 w-full bg-white'/>
+      <Visualisation />
+      <div className='py-5 w-full'/>
+      <BeginYourJourney />
+      <div className='py-5 w-full bg-white'/>
+      <PartsSection />
     </main>
   )
 }
