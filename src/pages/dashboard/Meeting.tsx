@@ -39,7 +39,7 @@ function Meeting({ }: Props) {
     return (
         <>
             <div className='h-[90%]'>
-                <JitsiMeeting
+                <JaaSMeeting
                     onReadyToClose={handleReadyToClose}
                     // appId={`${process.env.JITSI_APP_ID}`}
                     roomName={roomName}
