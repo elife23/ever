@@ -43,13 +43,14 @@ function Signup({ }: Props) {
 
   async function handleSignup() {
     setIsSigningUp(true);
-    let response = await createUser(user);
+    router.push(clientPaths.login);
+    // let response = await createUser(user);
 
-    if (response != null) {
-      setIsSigningUp(false);
-      // Redirect to the login page
-      router.push(clientPaths.login);
-    }
+    // if (response != null) {
+    //   setIsSigningUp(false);
+    //   // Redirect to the login page
+    //   router.push(clientPaths.login);
+    // }
   }
 
 

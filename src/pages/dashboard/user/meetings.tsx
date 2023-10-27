@@ -83,7 +83,7 @@ export default function MyVisioconference({} : Props) {
   const [filterValue, setFilterValue] = React.useState("");
   const [selectedKeys, setSelectedKeys] = React.useState<Selection>(new Set([]));
   const [visibleColumns, setVisibleColumns] = React.useState<Selection>(new Set(INITIAL_VISIBLE_COLUMNS));
-  const [statusFilter, setStatusFilter] = React.useState<Selection>("all");
+  // const [statusFilter, setStatusFilter] = React.useState<Selection>("all");
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [sortDescriptor, setSortDescriptor] = React.useState<SortDescriptor>({
     column: "age",
@@ -108,14 +108,14 @@ export default function MyVisioconference({} : Props) {
         visio.name.toLowerCase().includes(filterValue.toLowerCase()),
       );
     }
-    if (statusFilter !== "all" && Array.from(statusFilter).length !== statusOptions.length) {
-      filteredVisios = filteredVisios.filter((visio) =>
-        Array.from(statusFilter).includes(visio.status),
-      );
-    }
+    // if (statusFilter !== "all" && Array.from(statusFilter).length !== statusOptions.length) {
+    //   filteredVisios = filteredVisios.filter((visio) =>
+    //     Array.from(statusFilter).includes(visio.status),
+    //   );
+    // }
 
     return filteredVisios;
-  }, [visios, filterValue, statusFilter]);
+  }, [visios, filterValue]);
 
   const pages = Math.ceil(filteredItems.length / rowsPerPage);
 
@@ -218,27 +218,7 @@ export default function MyVisioconference({} : Props) {
             onValueChange={onSearchChange}
           />
           <div className="flex gap-3">
-            <Dropdown>
-              <DropdownTrigger className="hidden sm:flex">
-                <Button endContent={<ChevronDownIcon className="text-small" />} variant="flat">
-                  Status
-                </Button>
-              </DropdownTrigger>
-              <DropdownMenu
-                disallowEmptySelection
-                aria-label="Table Columns"
-                closeOnSelect={false}
-                selectedKeys={statusFilter}
-                selectionMode="multiple"
-                onSelectionChange={setStatusFilter}
-              >
-                {statusOptions.map((status) => (
-                  <DropdownItem key={status.uid} className="capitalize">
-                    {capitalize(status.name)}
-                  </DropdownItem>
-                ))}
-              </DropdownMenu>
-            </Dropdown>
+            
             <Dropdown>
               <DropdownTrigger className="hidden sm:flex">
                 <Button endContent={<ChevronDownIcon className="text-small" />} variant="flat">
@@ -283,7 +263,7 @@ export default function MyVisioconference({} : Props) {
     );
   }, [
     filterValue,
-    statusFilter,
+    // statusFilter,
     visibleColumns,
     onSearchChange,
     onRowsPerPageChange,
