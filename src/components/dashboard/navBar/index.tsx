@@ -2,6 +2,7 @@ import Image from 'next/image'
 import React from 'react'
 import logo from "../../../../public/images/logo.png";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, User } from '@nextui-org/react';
+import LeftSideBar from '../leftSideBar';
 
 type Props = {}
 
@@ -19,12 +20,13 @@ function AdminNavBar({ }: Props) {
                             </label>
                         </div>
                         {/* Sidebar Content */}
-                        <div className="drawer-side">
+                        <div className="drawer-side z-[99]">
                             <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
-                            <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+                            <ul className="menu py-4 px-4 w-max min-h-full bg-white text-base-content">
                                 {/* Sidebar content here */}
-                                <li><label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"><a>Sidebar Item 1</a></label></li>
-                                <li><a>Sidebar Item 2</a></li>
+                                {/* <li><label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"><a>Sidebar Item 1</a></label></li>
+                                <li><a>Sidebar Item 2</a></li> */}
+                                <LeftSideBar />
 
                             </ul>
                         </div>

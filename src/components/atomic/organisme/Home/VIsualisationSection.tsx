@@ -23,7 +23,7 @@ function VisualisationSection({}: Props) {
             <div className=" lg:max-w-max w-full">
 
               <div className='flex flex-col gap-y-4'>
-                <Typography fontVariation='semibold' className="my-4 leading-8 text-xl md:text-2xl text-gray-800 dark:text-white lg:text-3xl font-ibm-plex-mono font-bold w-full" >Visualisation pure, 100% intégrée dans Consfluence.</Typography>
+                <Typography fontVariation='semibold' className="my-4 leading-8 text-xl md:text-2xl text-gray-800 dark:text-white lg:text-3xl font-ibm-plex-mono font-bold w-full" >Visualisation pure, 100% intégrée dans Everseed.</Typography>
 
               </div>
 

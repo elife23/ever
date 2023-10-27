@@ -9,26 +9,50 @@ import googleSvg from "../../../../public/images/icons/google-color.svg";
 import logo from "../../../../public/images/logo.png";
 import Link from 'next/link';
 import { AuthCheck } from '@/utils/auth';
+import { createUser } from '@/utils/requests';
+import axios from 'axios';
+import { open_api } from '@/utils/api';
+import { useRouter } from 'next/router';
+import clientPaths from '@/utils/routes/client_routes';
 
 type Props = {}
 
 function Signup({ }: Props) {
+  
+  const router = useRouter();
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [hidePassword, setHidePassword] = useState(true);
-  const [rememberMe, setRememberMe] = useState(false);
   const [isSigningUp, setIsSigningUp] = useState(false);
 
-  async function handleLogin() {
-    await setIsSigningUp(true);
-    console.log(email, password, rememberMe, name);
-    // Write request to send data to API
-    // Handle Response and Data's from the API 
-    // Redirect to the login page
+  const [user, setUser] = useState({
+    firstname: '',
+    lastname: '',
+    email: '',
+    password: '',
+    deleted: false,
+    is_admin: false,
+  });
 
+  const handleChange = async (event: { target: { name: string; value: string; }; }) => {
+    const { name, value } = event.target;
+    setUser((prevUser) => ({
+      ...prevUser,
+      [name]: value,
+    }))
+  };
+
+  async function handleSignup() {
+    setIsSigningUp(true);
+    let response = await createUser(user);
+
+    if (response != null) {
+      setIsSigningUp(false);
+      // Redirect to the login page
+      router.push(clientPaths.login);
+    }
   }
+
+
 
 
   return (
@@ -44,9 +68,12 @@ function Signup({ }: Props) {
             {/* <h1 className="font-ibm-plex-mono text-2xl text-[#5ABB71] font-bold"><span className="text-[#5ABB71] font-light text-base">ever</span>seed</h1> */}
 
 
-            <p className="text-white text-5xl font-semibold">Start turning your <br /> ideas into reality.</p>
+            {/* <p className="text-white text-5xl font-semibold">Start turning your <br /> ideas into reality.</p> */}
+            <p className="text-white text-5xl font-semibold">Commencez à transformer vos <br /> idées en réalité.</p>
 
-            <p className="text-white text-xl font-medium">Create a free account and get full access to all features for 30 days. No credit card needed. Trusted by over 4,000 professionals.</p>
+            <p className="text-white text-xl font-medium">Créez un compte gratuitement et accédez à toutes les fonctionnélités pendant 30 jours. Pas de carte de crédit requise. Confirmée et approuvée par 4,000 professionels.
+              {/* Create a free account and get full access to all features for 30 days. No credit card needed. Trusted by over 4,000 professionals. */}
+            </p>
 
             <div className='w-full flex gap-3 py-2'>
               <AvatarGroup isBordered={true} >
@@ -59,6 +86,7 @@ function Signup({ }: Props) {
 
               <div className="flex flex-col font-medium">
                 <div className="flex text-white">⭐⭐⭐⭐⭐ 5.0</div>
+                {/* <p className="text-white">from 200+ reviews</p> */}
                 <p className="text-white">from 200+ reviews</p>
               </div>
 
@@ -78,24 +106,32 @@ function Signup({ }: Props) {
             </div>
 
             <div className="">
-              <h1 className="text-2xl font-extrabold">Sign Up</h1>
-              <p>Start your 30-day free trial</p>
+              <h1 className="text-2xl font-extrabold">Inscription</h1>
+              {/* <p>Start your 30-day free trial</p> */}
+              <p>Commencez vos 30 jours gratuits</p>
             </div>
 
             {/* Inputs section */}
             <form className='flex flex-col gap-y-unit-md'>
-              <div className='flex flex-col gap-2'>
-                <label className="text-sm font-bold after:content-['*'] after:ml-0.5 after:text-red-500" htmlFor="name">Name</label>
-                <input type="text" id='name' name='name' value={name} className='py-2 w-full border-2 rounded-lg px-4 md:text-base focus:ring-2 transition-all ease-in-out focus:outline focus:outline-primary/50 focus:ring-primary' placeholder='Exple: John Doe' onChange={(val) => setName(val.target.value)} />
+              <div className='flex flex-col gap-2 lg:flex-row lg:gap-x-3'>
+                <div>
+                  <label className="text-sm font-bold after:content-['*'] after:ml-0.5 after:text-red-500" htmlFor="lastname">Nom</label>
+                  <input type="text" id='lastname' name='lastname' value={user.lastname} className='py-2 w-full border-2 rounded-lg px-4 md:text-base focus:ring-2 transition-all ease-in-out focus:outline focus:outline-primary/50 focus:ring-primary' placeholder='Exple: John Doe' onChange={handleChange} />
+                </div>
+
+                <div>
+                  <label className="text-sm font-bold after:content-['*'] after:ml-0.5 after:text-red-500" htmlFor="firstname">Prénom</label>
+                  <input type="text" id='firstname' name='firstname' value={user.firstname} className='py-2 w-full border-2 rounded-lg px-4 md:text-base focus:ring-2 transition-all ease-in-out focus:outline focus:outline-primary/50 focus:ring-primary' placeholder='Exple: John Doe' onChange={handleChange} />
+                </div>
               </div>
               <div className='flex flex-col gap-2'>
                 <label className="text-sm font-bold after:content-['*'] after:ml-0.5 after:text-red-500" htmlFor="email">Email</label>
-                <input type="email" id='email' name='email' value={email} className='py-2 w-full border-2 rounded-lg px-4 md:text-base focus:ring-2 transition-all ease-in-out focus:outline focus:outline-primary/50 focus:ring-primary' placeholder='Exple: John Doe@gmail.com' onChange={(val) => setEmail(val.target.value)} />
+                <input type="email" id='email' name='email' value={user.email} className='py-2 w-full border-2 rounded-lg px-4 md:text-base focus:ring-2 transition-all ease-in-out focus:outline focus:outline-primary/50 focus:ring-primary' placeholder='Exple: John Doe@gmail.com' onChange={handleChange} />
               </div>
               <div className='flex flex-col gap-1'>
-                <label className='text-sm font-bold' htmlFor="password">Password <span className="text-danger">*</span></label>
+                <label className='text-sm font-bold' htmlFor="password">Mot de passe <span className="text-danger">*</span></label>
                 <div className='relative w-full'>
-                  <input type={hidePassword ? "password" : "text"} id='password' name='password' value={password} className='py-2 w-full border-2 rounded-lg px-4 md:text-base focus:ring-2 transition-all ease-in-out focus:outline focus:outline-primary/50 focus:ring-primary' placeholder='Type here' onChange={(val) => setPassword(val.target.value)} />
+                  <input type={hidePassword ? "password" : "text"} id='password' name='password' value={user.password} className='py-2 w-full border-2 rounded-lg px-4 md:text-base focus:ring-2 transition-all ease-in-out focus:outline focus:outline-primary/50 focus:ring-primary' placeholder='Écrivez ici' onChange={handleChange} />
 
                   <span className="hover:cursor-pointer hover:text-primary absolute inset-y-0 right-4 inline-flex items-center" onClick={() => { setHidePassword(!hidePassword) }}>
                     {hidePassword == true ? (<Image src={eyeSvg} className="h-5 w-5 text-secondary" alt="eye-Svg" />) : (
@@ -103,30 +139,30 @@ function Signup({ }: Props) {
                     )}
                   </span>
                 </div>
-                <p>Must be at least 8 characters.</p>
+                <p>Doit être au moins 8 caractères.</p>
               </div>
 
             </form>
 
             {/* Signup buttons section */}
             <div>
-              <Button className={`bg-primary w-full text-white`} isIconOnly={true} isLoading={isSigningUp} variant="flat" onClick={() => { handleLogin() }} >
-                {isSigningUp == false ? "Create an account" : <span className='ml-2 text-white font-bold'>{"Loading"}</span>}
+              <Button className={`bg-primary w-full text-white`} isIconOnly={true} isLoading={isSigningUp} variant="flat" onClick={() => { handleSignup() }} >
+                {isSigningUp == false ? "Créer un compte" : <span className='ml-2 text-white font-bold'>{"Veuillez patienter"}</span>}
               </Button>
             </div>
             <div className='flex items-center w-full'>
-              <div className="h-0.5 bg-tertiary w-1/2" /> <span className="md:text-base font-semibold mx-2">Or</span><div className="h-0.5 bg-tertiary w-1/2" />
+              <div className="h-0.5 bg-tertiary w-1/2" /> <span className="md:text-base font-semibold mx-2">Ou</span><div className="h-0.5 bg-tertiary w-1/2" />
             </div>
             <div>
               <Button className="w-full font-bold bg-white border-2 py-4">
                 <Image src={googleSvg} className="h-5 w-5 text-secondary" alt="google-svg" />
-                Sign Up With google
+                Inscription avec google
               </Button>
             </div>
 
             {/* New here text section */}
             <div className="w-full flex justify-center">
-              <p>Already have an account ? <Link href="/auth/login/" className="font-bold md:text-sm text-primary hover:text-primary/80">Login</Link></p>
+              <p>Vous avez déjà un compte ? <Link href="/auth/login/" className="font-bold md:text-sm text-primary hover:text-primary/80">Connectez vous</Link></p>
             </div>
           </div>
         </div>

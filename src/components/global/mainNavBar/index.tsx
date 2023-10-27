@@ -5,6 +5,7 @@ import Image from "next/image";
 // import {AcmeLogo} from "./AcmeLogo.jsx";
 import logo from "../../../../public/images/logo.png";
 import { signOut } from "next-auth/react";
+import dashboardPaths from "@/utils/routes/dashboard_routes";
 
 export default function MainNavBar() {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -112,7 +113,7 @@ export default function MainNavBar() {
                     <Link
                         color={"foreground"}
                         className="w-2/3 hover:text-white transition-all duration-150 hover:bg-primary p-2 rounded-lg "
-                        href="#"
+                        href={dashboardPaths.userMeetings}
                         size="lg"
                     >
                         Dashboard

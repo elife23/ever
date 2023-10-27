@@ -12,6 +12,8 @@ import { signIn, useSession } from 'next-auth/react';
 import { AuthCheck } from '@/utils/auth';
 import { redirect } from 'next/navigation';
 import { useRouter } from 'next/router';
+import { login } from '@/utils/requests';
+import dashboardPaths from '@/utils/routes/dashboard_routes';
 
 type Props = {}
 
@@ -20,30 +22,46 @@ function Login({ }: Props) {
 
     // const session = AuthCheck();
     const router = useRouter();
-    
+
     const { data: session } = useSession();
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+
+    const [user, setUser] = useState({
+        email: '',
+        password: '',
+    });
+
     const [hidePassword, setHidePassword] = useState(true);
     const [rememberMe, setRememberMe] = useState(false);
     const [isLogingIn, setIsLogingIn] = useState(false);
     const [emailVerif, setEmailVerif] = useState(false);
     const [passwordVerif, setPasswordVerif] = useState(false);
 
+
+    const handleChange = async (event: { target: { name: any; value: any; }; }) => {
+        const { name, value } = event.target;
+        setUser((prevUser) => ({
+            ...prevUser,
+            [name]: value,
+        }))
+    };
+
+    
     async function handleLogin() {
+        setIsLogingIn(true);
 
-
-
-        await setIsLogingIn(true);
-        console.log(email, password, rememberMe);
         // Write a condition to verify if email is empty or not and if password is empty and if password is less than 8 characters
-        if (email == "") {
+        if (user.email == "") {
             setEmailVerif(true);
-        } else if (password == "" || password.length < 8) {
+        } else if (user.password == "" || user.password.length < 8) {
             setPasswordVerif(true);
         }
-        setIsLogingIn(false);
-
+        
+        if (emailVerif == false && passwordVerif == false) {
+            // const response = await login(user);
+            // console.log("user response", response)
+            // setIsLogingIn(false);
+            router.push(dashboardPaths.userMeetings);
+        }
         // Write request to send data to API
         // Handle Response and Data's from the API 
     }
@@ -110,12 +128,12 @@ function Login({ }: Props) {
                         <form className='flex flex-col gap-y-unit-md'>
                             <div className='flex flex-col gap-2'>
                                 <label className="text-sm font-bold after:content-['*'] after:ml-0.5 after:text-red-500" htmlFor="email">Email</label>
-                                <input type="email" id='email' name='email' value={email} className={`py-2 w-full border-2 rounded-lg px-4 md:text-base focus:ring-2 transition-all ease-in-out focus:outline   ${emailVerif == true ? 'focus:outline-danger border-danger focus:ring-danger' : 'focus:outline-primary/50 focus:ring-primary'}`} placeholder='Exple: John Doe@gmail.com' onChange={(val) => setEmail(val.target.value)} />
+                                <input type="email" id='email' name='email' value={user.email} className={`py-2 w-full border-2 rounded-lg px-4 md:text-base focus:ring-2 transition-all ease-in-out focus:outline   ${emailVerif == true ? 'focus:outline-danger border-danger focus:ring-danger' : 'focus:outline-primary/50 focus:ring-primary'}`} placeholder='Exple: John Doe@gmail.com' onChange={handleChange} />
                             </div>
                             <div className='flex flex-col gap-1'>
                                 <label className='text-sm font-bold' htmlFor="password">Password <span className="text-danger">*</span></label>
                                 <div className='relative w-full'>
-                                    <input type={hidePassword ? "password" : "text"} id='password' name='password' value={password} className={`py-2 w-full border-2 rounded-lg px-4 md:text-base focus:ring-2 transition-all ease-in-out focus:outline   ${passwordVerif == true || (password != '' && password.length < 8) ? 'border-danger focus:ring-danger focus:outline-red-600/50' : 'focus:ring-primary focus:outline-primary/50'}`} placeholder='Type here' onChange={(val) => setPassword(val.target.value)} />
+                                    <input type={hidePassword ? "password" : "text"} id='password' name='password' value={user.password} className={`py-2 w-full border-2 rounded-lg px-4 md:text-base focus:ring-2 transition-all ease-in-out focus:outline   ${passwordVerif == true || (user.password != '' && user.password.length < 8) ? 'border-danger focus:ring-danger focus:outline-red-600/50' : 'focus:ring-primary focus:outline-primary/50'}`} placeholder='Type here' onChange={handleChange} />
 
                                     <span className="hover:cursor-pointer hover:text-primary absolute inset-y-0 right-4 inline-flex items-center" onClick={() => { setHidePassword(!hidePassword) }}>
                                         {hidePassword == true ? (<Image src={eyeSvg} className="h-5 w-5 text-secondary" alt="eye-Svg" />) : (
@@ -148,7 +166,8 @@ function Login({ }: Props) {
                             <Button className="bg-primary w-full text-white" isLoading={isLogingIn} variant="flat" onClick={() => { handleLogin() }}
                             // disabled={email == '' || password == '' || password.length < 8 ? true : false} 
                             >
-                                {isLogingIn == false ? "Login" : "Loading"}
+                                {isLogingIn == false ? "Se connecter" : "Veuillez patienter"}
+                                
                             </Button>
                         </div>
                         <div className='flex items-center w-full'>

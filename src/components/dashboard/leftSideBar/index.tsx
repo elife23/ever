@@ -56,7 +56,7 @@ function LeftSideBar({ }: Props) {
 
                         </div>
 
-                        <div className="space-y-3 ">
+                        {/* <div className="space-y-3 ">
                             <label className="px-3 text-xs text-gray-500 uppercase dark:text-gray-400">analyse</label>
 
                             <Link className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700" href={dashboardPaths.adminMeetings}>
@@ -82,7 +82,7 @@ function LeftSideBar({ }: Props) {
 
                                 <span className="mx-2 text-sm font-medium">Logs</span>
                             </Link>
-                        </div>
+                        </div> */}
 
                         {/* Common */}
                         <div className="space-y-3 border-t py-4">
