@@ -7,16 +7,17 @@ import headerWhiteboard from "../../../../../public/images/headerWhiteboard.svg"
 import { motion } from "framer-motion";
 import Link from 'next/link';
 import LinkButton from '../../atoms/LinkButton';
+import importedImages from '@/utils/importedImg';
 
 type Props = {}
 
 function MainHeader({ }: Props) {
   return (
     <>
-      <header className="bg-white dark:bg-gray-900 py-10">
-        <div className="container px-6 mx-auto">
-          <div className="items-center lg:flex">
-            <div className="w-full lg:w-1/2">
+      <header className="bg-white h-max dark:bg-gray-900 py-10 lg:h-[90vh]">
+        <div className="container px-6 mx-auto md:h-full">
+          <div className="items-center lg:flex md:h-full">
+            <div className="w-full h-1/2 lg:h-full lg:flex lg:items-center lg:w-1/2">
               <div className=" lg:max-w-max w-full">
 
                 <div className='flex flex-col gap-y-4'>
@@ -38,9 +39,8 @@ function MainHeader({ }: Props) {
             </div>
 
             <motion.div initial={{ y: -60, opacity: 0 }} animate={{ y: 0, opacity: 1 }} className="flex items-center justify-center w-full mt-6 lg:mt-0 lg:w-1/2">
-              <Image className="w-full h-full lg:max-w-xl" src={Gif} alt="Header" />
-
-
+              {/* <Image className="w-full h-full lg:max-w-xl" src={Gif} alt="Header" /> */}
+              <Image className="w-full h-full lg:max-w-2xl lg:h-max object-fill rounded-lg" width={1000} height={1000} src={importedImages.headerImg} alt="header Image" />
             </motion.div>
           </div>
         </div>

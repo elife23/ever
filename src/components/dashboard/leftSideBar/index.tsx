@@ -5,13 +5,16 @@ import Link from 'next/link';
 import dashboardPaths from '@/utils/routes/dashboard_routes';
 import clientPaths from '@/utils/routes/client_routes';
 import ImportedSvgs from '@/utils/ImportedSvgs';
+import { useRouter } from 'next/router';
 
 type Props = {}
 
 function LeftSideBar({ }: Props) {
+    const router = useRouter();
+
     return (
         <>
-            <aside className="overflow-y-hidden flex flex-col w-64 h-screen px-5 bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
+            <aside className={`  overflow-y-hidden flex flex-col w-64 h-screen px-5 bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700`}>
                 <Link href={clientPaths.home} className='w-max'>
                     {/* <Image className="w-16 h-16" src={logo} alt="logo" /> */}
                     <Image className="w-20 h-20" src={logo} alt="logo" />

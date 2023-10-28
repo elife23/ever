@@ -3,15 +3,18 @@ import React from 'react'
 import logo from "../../../../public/images/logo.png";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, User } from '@nextui-org/react';
 import LeftSideBar from '../leftSideBar';
+import { useRouter } from 'next/router';
 
 type Props = {}
 
 function AdminNavBar({ }: Props) {
+    const router = useRouter();
+
     return (
         <>
             <div className="navbar bg-white">
                 <div className="navbar-start">
-                    <div className="drawer w-max lg:hidden">
+                    <div className={`drawer w-max lg:hidden `}>
                         <input id="my-drawer" type="checkbox" className="drawer-toggle" />
                         <div className="drawer-content cursor-pointer">
                             {/* Page content here */}
