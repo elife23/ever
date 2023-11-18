@@ -31,6 +31,44 @@ body {
   color: #33332D;
 }
 
+.meeting-parent > div  {
+  backdrop-filter: blur(10px) !important;
+}
+
+/* input type name*/
+.TYiiRFB3EhYJGVPE4k4q {
+  /* border-color: #5Abb71 !important; */
+  border-color: #00A5E3 !important;
+  /* outline-color: #5Abb71 !important; */
+  outline-color: #00A5E3 !important;
+  border-radius: 10px !important;
+}
+
+.TYiiRFB3EhYJGVPE4k4q:hover, .TYiiRFB3EhYJGVPE4k4q:visited {
+  /* outline-color: #5Abb71 !important; */
+  outline-color: #00A5E3 !important;
+}
+
+/* Video */
+
+.LW7EjqPdWOz2byf1EuLg {
+  border-radius: 10px !important;
+}
+
+/* Div shadowed */
+.D9WLyEQaARfWqCTyVrpU {
+  height: 75% !important;
+  border-radius: 10px !important;
+  box-shadow: none !important;
+}
+
+/* Button */
+.VsTVUAD89KWleD0YRVsD {
+  /* background-color: #5Abb71 !important; */
+  background-color: #00A5E3 !important;
+  border-radius: 10px !important;
+}
+
 /**** Fonts ****/
 
 /**********************************
@@ -157,3 +195,12 @@ body {
   src: url("/fonts/monospace.oblique.ttf") format("ttf");
 }
 
+
+
+/**********************************
+************ cm_tiempo ************
+**********************************/
+@font-face {
+  font-family: "cm-tiempo";
+  src: url("/public/fonts/cm_tiempo/CMTiempo.ttf") format("ttf");
+}

@@ -15,7 +15,7 @@ function DashboardLayout({ children }: Props) {
         </div>
         <div className='h-full w-full lg:[80%]'>
           <AdminNavBar />
-          <div className='h-full bg-base-300 w-full overflow-y-auto'>
+          <div className='h-full bg-base-300 w-full px-6 overflow-y-auto'>
             {children}
           </div>
         </div>

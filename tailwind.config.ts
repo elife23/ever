@@ -40,8 +40,11 @@ const config: Config = {
   theme: {
     extend: {
     colors: {
-        "primary": '#5Abb71',
-        "secondary": '#33332D',
+        // "primary": '#5Abb71',
+        "primary": '#00A5E3',
+        // "secondary": '#33332D',
+        "secondary": '#BDD7BF',
+        "accentuation": '#FF96C5',
         "tertiary": '#E1E1E1',
       },
       fontFamily: {
@@ -66,6 +69,9 @@ const config: Config = {
           'monospace.medium',
           'monospace.oblique',
         ],
+        "cmTiempo": [
+          'cmTiempo'
+        ]
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

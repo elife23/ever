@@ -21,20 +21,28 @@ export default function Home() {
     // </main>
     <main className="flex min-h-screen flex-col bg-[#DCE1DE] justify-between">
       <MainHeader />
-      <div className='py-5 w-full'/>
-      <ProductiveSection />
-      <div className='py-5 w-full'/>
-      <VideoCallSection />
-      <div className='py-5 w-full bg-white'/>
-      <VisualisationSection />
-      <div className='py-5 w-full '/>
-      <TrustedSection />
-      <div className='py-5 w-full bg-white'/>
-      <Visualisation />
-      <div className='py-5 w-full'/>
-      <BeginYourJourney />
-      <div className='py-5 w-full bg-white'/>
+      {/* <div className='py-5 w-full bg-white'/> */}
       <PartsSection />
+
+      {/* <div className='py-5 w-full'/> */}
+      <VideoCallSection />   {/* // Exprimez librement */}
+
+      {/* <div className='py-5 w-full'/> */}
+      <ProductiveSection />  {/* Gagnez en temps */}
+
+      {/* <div className='py-5 w-full bg-white'/> */}
+      <VisualisationSection /> {/* Collaborer plus simplement */}
+
+      {/* <div className='py-5 w-full '/> */}
+      <TrustedSection /> 
+
+      {/* <div className='py-5 w-full bg-white'/> */}
+      {/* <Visualisation /> */}
+      {/* <div className='py-5 w-full'/> */}
+      <BeginYourJourney /> {/* Engagement */}
+
+      {/* {/* <div className='py-5 w-full bg-white'/> */}
+      {/* <PartsSection /> */}
     </main>
   )
 }

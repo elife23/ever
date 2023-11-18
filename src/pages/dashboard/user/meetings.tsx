@@ -65,6 +65,7 @@ import { ChevronDownIcon } from "@/components/atomic/organisme/Dashboard/Chevron
 import { SearchIcon } from "@/components/atomic/organisme/Dashboard/SearchIcon";
 import { capitalize } from "@/utils/Util";
 import dashboardPaths from "@/utils/routes/dashboard_routes";
+import clientPaths from "@/utils/routes/client_routes";
 // import {columns, visios, statusOptions} from "./data";
 
 const statusColorMap: Record<string, ChipProps["color"]> = {
@@ -206,12 +207,12 @@ export default function MyVisioconference({} : Props) {
 
   const topContent = React.useMemo(() => {
     return (
-      <div className="flex flex-col gap-4 py-4 px-8">
+      <div className="flex flex-col gap-4 py-4">
         <div className="flex justify-between gap-3 items-end">
           <Input
             isClearable
-            className="w-full sm:max-w-[44%]"
-            placeholder="Search by name..."
+            className="w-full sm:max-w-[44%] rounded-md"
+            placeholder="Rechercher par le nom..."
             startContent={<SearchIcon />}
             value={filterValue}
             onClear={() => onClear()}
@@ -221,7 +222,7 @@ export default function MyVisioconference({} : Props) {
             
             <Dropdown>
               <DropdownTrigger className="hidden sm:flex">
-                <Button endContent={<ChevronDownIcon className="text-small" />} variant="flat">
+                <Button className="rounded-md" endContent={<ChevronDownIcon className="text-small" />} variant="flat">
                   Colonnes
                 </Button>
               </DropdownTrigger>
@@ -240,7 +241,10 @@ export default function MyVisioconference({} : Props) {
                 ))}
               </DropdownMenu>
             </Dropdown>
-            <Button color="primary"  as={Link} href={dashboardPaths.meeting} endContent={<PlusIcon />}>
+            {/* <Button color="primary"  as={Link} href={dashboardPaths.meeting} endContent={<PlusIcon />}>
+              Nouvelle réunion
+            </Button> */}
+            <Button color="primary"  as={Link} href={clientPaths.meetingRoom} endContent={<PlusIcon />} className="rounded-md">
               Nouvelle réunion
             </Button>
           </div>
@@ -250,7 +254,7 @@ export default function MyVisioconference({} : Props) {
           <label className="flex items-center text-default-400 text-small">
             Rows per page:
             <select
-              className="bg-transparent outline-none text-default-400 text-small"
+              className="bg-transparent outline-none text-default-400 text-small rounded-md"
               onChange={onRowsPerPageChange}
             >
               <option value="5">5</option>
@@ -307,7 +311,7 @@ export default function MyVisioconference({} : Props) {
       bottomContent={bottomContent}
       bottomContentPlacement="outside"
       classNames={{
-        wrapper: "max-h-[382px]",
+        wrapper: "max-h-[382px] rounded-md",
       }}
       selectedKeys={selectedKeys}
       selectionMode="multiple"

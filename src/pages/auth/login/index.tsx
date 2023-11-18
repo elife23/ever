@@ -57,10 +57,10 @@ function Login({ }: Props) {
         }
         
         if (emailVerif == false && passwordVerif == false) {
-            // const response = await login(user);
-            // console.log("user response", response)
-            // setIsLogingIn(false);
-            router.push(dashboardPaths.userMeetings);
+            const response = await login(user);
+            console.log("user response", response)
+            setIsLogingIn(false);
+            // router.push(dashboardPaths.userMeetings);
         }
         // Write request to send data to API
         // Handle Response and Data's from the API 
@@ -74,7 +74,7 @@ function Login({ }: Props) {
         router.replace("/")
     }
     return (
-        <div className="flex w-screen h-[95vh] lg:h-[90vh] bg-white">
+        <div className="flex h-[95vh] lg:h-[90vh] bg-white">
             {/* Left side of the login page */}
             <div className="hidden lg:flex relative h-full w-1/2 bg-white">
                 <div className=" flex items-center justify-center z-0 relative w-full h-full rounded-r-[40px] bg-[url(/images/backgrounds/login.jpg)] bg-no-repeat bg-cover bg-center">
@@ -120,8 +120,8 @@ function Login({ }: Props) {
                         </div>
 
                         <div className="">
-                            <h1 className="text-2xl font-extrabold">Login</h1>
-                            <p>Start your 30-day free trial</p>
+                            <h1 className="text-2xl font-extrabold">Connexion</h1>
+                            <p>Commencez vos 30 jours gratuits</p>
                         </div>
 
                         {/* Inputs section */}
@@ -131,9 +131,9 @@ function Login({ }: Props) {
                                 <input type="email" id='email' name='email' value={user.email} className={`py-2 w-full border-2 rounded-lg px-4 md:text-base focus:ring-2 transition-all ease-in-out focus:outline   ${emailVerif == true ? 'focus:outline-danger border-danger focus:ring-danger' : 'focus:outline-primary/50 focus:ring-primary'}`} placeholder='Exple: John Doe@gmail.com' onChange={handleChange} />
                             </div>
                             <div className='flex flex-col gap-1'>
-                                <label className='text-sm font-bold' htmlFor="password">Password <span className="text-danger">*</span></label>
+                                <label className='text-sm font-bold' htmlFor="password">Mot de passe <span className="text-danger">*</span></label>
                                 <div className='relative w-full'>
-                                    <input type={hidePassword ? "password" : "text"} id='password' name='password' value={user.password} className={`py-2 w-full border-2 rounded-lg px-4 md:text-base focus:ring-2 transition-all ease-in-out focus:outline   ${passwordVerif == true || (user.password != '' && user.password.length < 8) ? 'border-danger focus:ring-danger focus:outline-red-600/50' : 'focus:ring-primary focus:outline-primary/50'}`} placeholder='Type here' onChange={handleChange} />
+                                    <input type={hidePassword ? "password" : "text"} id='password' name='password' value={user.password} className={`py-2 w-full border-2 rounded-lg px-4 md:text-base focus:ring-2 transition-all ease-in-out focus:outline   ${passwordVerif == true || (user.password != '' && user.password.length < 8) ? 'border-danger focus:ring-danger focus:outline-red-600/50' : 'focus:ring-primary focus:outline-primary/50'}`} placeholder='Ecrivez ici' onChange={handleChange} />
 
                                     <span className="hover:cursor-pointer hover:text-primary absolute inset-y-0 right-4 inline-flex items-center" onClick={() => { setHidePassword(!hidePassword) }}>
                                         {hidePassword == true ? (<Image src={eyeSvg} className="h-5 w-5 text-secondary" alt="eye-Svg" />) : (
@@ -141,7 +141,7 @@ function Login({ }: Props) {
                                         )}
                                     </span>
                                 </div>
-                                <p className={`${passwordVerif == true ? 'text-danger' : ''}`} >Must be at least 8 characters.</p>
+                                <p className={`${passwordVerif == true ? 'text-danger' : ''}`} >Doit être au moins 8 caractères.</p>
                             </div>
 
                         </form>
@@ -151,11 +151,11 @@ function Login({ }: Props) {
                             <div className='w-full flex justify-between'>
                                 <div className="flex gap-2">
                                     <input className="ml-2 cursor-pointer checked:accent-primary" type="checkbox" id="remember" name="remember" checked={rememberMe} onChange={(val) => setRememberMe(val.target.checked)} />
-                                    <label className="block text-gray-500 font-bold" htmlFor="remember">remember me</label>
+                                    <label className="block text-gray-500 font-bold" htmlFor="remember">Se souvenir de moi</label>
                                 </div>
                                 <div>
                                     <Link href="#" className="font-bold md:text-sm text-primary hover:text-primary/80">
-                                        forgot password
+                                        Mot de passe oublié
                                     </Link>
                                 </div>
                             </div>
@@ -176,13 +176,13 @@ function Login({ }: Props) {
                         <div>
                             <Button className="w-full font-bold bg-white border-2 py-4" onClick={() => signIn("google")}>
                                 <Image src={googleSvg} className="h-5 w-5 text-secondary" alt="google-svg" />
-                                Login With google
+                                Se connecter avec google
                             </Button>
                         </div>
 
                         {/* New here text section */}
                         <div className="w-full flex justify-center">
-                            <p>New Here ? <Link href="/auth/signup/" className="font-bold md:text-sm text-primary hover:text-primary/80">Create an account</Link></p>
+                            <p>Nouveau ici ? <Link href="/auth/signup/" className="font-bold md:text-sm text-primary hover:text-primary/80">Créer un compte</Link></p>
                         </div>
                     </div>
 

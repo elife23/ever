@@ -44,23 +44,23 @@ function Signup({ }: Props) {
   async function handleSignup() {
     setIsSigningUp(true);
     router.push(clientPaths.login);
-    // let response = await createUser(user);
+    let response = await createUser(user);
 
-    // if (response != null) {
-    //   setIsSigningUp(false);
-    //   // Redirect to the login page
-    //   router.push(clientPaths.login);
-    // }
+    if (response != null) {
+      setIsSigningUp(false);
+      // Redirect to the login page
+      router.push(clientPaths.login);
+    }
   }
 
 
 
 
   return (
-    <div className="flex w-screen h-[95vh] lg:h-[93vh] bg-white">
+    <div className="flex h-max lg:h-[93vh] bg-white">
       {/* Left side of the login page */}
-      <div className="hidden lg:flex relative h-full w-1/2 bg-white">
-        <div className=" flex items-center justify-center z-0 relative w-full h-full rounded-r-[40px] bg-[url(/images/backgrounds/login.jpg)] bg-no-repeat bg-cover bg-center">
+      <div className="hidden lg:flex relative h-full w-1/2 bg-white ">
+        <div className="flex items-center justify-center z-0 relative w-full h-full rounded-r-[40px] bg-[url(/images/backgrounds/login.jpg)] bg-no-repeat bg-cover bg-center">
           <div className="absolute w-full h-full bg-[#33332D]/40 z-0 rounded-r-[40px]" />
 
           {/* Description text section */}
@@ -98,7 +98,7 @@ function Signup({ }: Props) {
 
       {/* Rigt side of the login page */}
       <div className="bg-[url(/images/backgrounds/login.jpg)] bg-no-repeat bg-cover bg-center lg:bg-white lg:bg-[url()] w-full relative h-full lg:w-1/2">
-        <div className="backdrop-blur-sm relative w-full h-full flex justify-center items-center px-8 lg:px-20 ">
+        <div className="backdrop-blur-sm relative w-full h-full flex justify-center items-center px-8 lg:px-20 py-4 lg:py-0">
           <div className='bg-white py-4 px-8 lg:px-0 rounded-lg flex flex-col w-full h-auto gap-y-4'>
             {/* Title section */}
             <div className="w-full flex justify-start">
@@ -163,7 +163,7 @@ function Signup({ }: Props) {
 
             {/* New here text section */}
             <div className="w-full flex justify-center">
-              <p>Vous avez déjà un compte ? <Link href="/auth/login/" className="font-bold md:text-sm text-primary hover:text-primary/80">Connectez vous</Link></p>
+              <p className="font-bold text-xs md:text-sm">Vous avez déjà un compte ? <Link href="/auth/login/" className="text-primary hover:text-primary/80">Connectez vous</Link></p>
             </div>
           </div>
         </div>
