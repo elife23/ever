@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import logo from "../../../../public/images/logo.png";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, User } from '@nextui-org/react';
 import LeftSideBar from '../leftSideBar';
@@ -9,6 +9,15 @@ type Props = {}
 
 function AdminNavBar({ }: Props) {
     const router = useRouter();
+    const [user, setUser] = useState({});
+
+    useEffect(() => {
+        const datas = localStorage.getItem("e-u-d");
+        const testUser = datas ? JSON.parse(datas) : null;
+        setUser(testUser.user);
+        console.log(user);
+    },[])
+    console.log(user);
 
     return (
         <>
@@ -44,12 +53,11 @@ function AdminNavBar({ }: Props) {
                                 as="button"
                                 avatarProps={{
                                     isBordered: true,
-                                    src: "https://i.pravatar.cc/150?u=a042581f4e29026024d",
+                                    src: "",
                                 }}
                                 className="transition-transform flex-row-reverse"
-                                description="session.email@email.com"
-                                name="session.firstname"
-
+                                description={user ? (user.email) : ""}
+                                name={user ? (user.lastname + " " + user.firstname) : ""}
                             />
                         </DropdownTrigger>
                         <DropdownMenu aria-label="User Actions" variant="flat">

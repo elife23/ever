@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, Divider } from "@nextui-org/react";
 import Image from "next/image";
@@ -10,13 +10,22 @@ import dashboardPaths from "@/utils/routes/dashboard_routes";
 import LinkButtonTransparent from "@/components/atomic/atoms/LinkButtonTransparent";
 import clientPaths from "@/utils/routes/client_routes";
 import { useRouter } from "next/router";
+import { UserContext } from "@/utils/context/User";
+import { getUserConnectedDatas } from "@/utils/requests";
 
 export default function MainNavBar() {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
     const router = useRouter();
     const currentRoute = router.pathname;
+    const [user, setUser] = useState(null);
 
-    console.log(currentRoute)
+    useEffect(() => {
+        const tmpUser =  getUserConnectedDatas();
+        setUser(tmpUser.user);
+    }, [])
+
+    
+
     return (
         <Navbar
             classNames={{
@@ -84,19 +93,23 @@ export default function MainNavBar() {
                         </Link>
                     </NavbarItem>
                 </NavbarContent>
-                <NavbarItem className="hidden sm:flex">
-                    {/* <Link href="/auth/login/" className="text-secondary border border-secondary px-5 py-2 rounded-sm">Login</Link> */}
-                    <Link href={clientPaths.login} className='w-full lg:w-auto'>
-                        <button className="w-full px-5 py-2 text-sm tracking-wider uppercase transition-colors duration-300 transform rounded-sm lg:w-auto focus:outline-none text-secondary hover:text-secondary/80 border-2 border-secondary hover:border-secondary/80">
-                            Se connecter
-                        </button>
-                    </Link>
-                </NavbarItem>
-                <NavbarItem className="hidden sm:flex">
-                    <Button as={Link} href="/auth/signup/" variant="flat" className="bg-primary text-white px-8 rounded-sm">
-                        S'inscrire
-                    </Button>
-                </NavbarItem>
+                {
+                    user ? (<></>) : (<>
+                        <NavbarItem className="hidden sm:flex">
+                            {/* <Link href="/auth/login/" className="text-secondary border border-secondary px-5 py-2 rounded-sm">Login</Link> */}
+                            <Link href={clientPaths.login} className='w-full lg:w-auto'>
+                                <button className="w-full px-5 py-2 text-sm tracking-wider uppercase transition-colors duration-300 transform rounded-sm lg:w-auto focus:outline-none text-secondary hover:text-secondary/80 border-2 border-secondary hover:border-secondary/80">
+                                    Se connecter
+                                </button>
+                            </Link>
+                        </NavbarItem>
+                        <NavbarItem className="hidden sm:flex">
+                            <Button as={Link} href="/auth/signup/" variant="flat" className="bg-primary text-white px-8 rounded-sm">
+                                S'inscrire
+                            </Button>
+                        </NavbarItem>
+                    </>)
+                }
                 <NavbarMenuToggle
                     aria-label={isMenuOpen ? "Close menu" : "Open menu"}
                     className="sm:hidden"

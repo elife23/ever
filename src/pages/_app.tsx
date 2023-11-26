@@ -8,6 +8,7 @@ import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import DashboardLayout from './dashboard/DashboardLayout'
 import dashboardPaths from '@/utils/routes/dashboard_routes'
+import { UserContextProvider } from '@/utils/context/User'
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -18,26 +19,30 @@ export default function App({ Component, pageProps }: AppProps) {
 
   // Verify if the current page is a page of the dashboard
   const isDashboardPage = dashboardRoutes.includes(currentPage);
-  
+
   if (isDashboardPage) {
     return (
       <>
         <DashboardLayout>
-          <Component {...pageProps} />
+          <UserContextProvider>
+            <Component {...pageProps} />
+          </UserContextProvider>
         </DashboardLayout>
       </>
     );
   }
-  
+
   return (
     <>
-    <SessionProvider session={pageProps.session}>
-      <NextUIProvider>
-        <MainNavBar />
-        <Component {...pageProps} />
-        <MainFooter />
-      </NextUIProvider>
-    </SessionProvider>
+      <SessionProvider session={pageProps.session}>
+        <NextUIProvider>
+          <UserContextProvider>
+            <MainNavBar />
+            <Component {...pageProps} />
+            <MainFooter />
+          </UserContextProvider>
+        </NextUIProvider>
+      </SessionProvider>
     </>
   )
 }

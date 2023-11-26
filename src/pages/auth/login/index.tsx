@@ -1,6 +1,6 @@
 import { Avatar, AvatarGroup, Button, Divider, Input } from '@nextui-org/react'
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 // Images
 import googleSvg from "../../../../public/images/icons/google-color.svg";
@@ -12,15 +12,16 @@ import { signIn, useSession } from 'next-auth/react';
 import { AuthCheck } from '@/utils/auth';
 import { redirect } from 'next/navigation';
 import { useRouter } from 'next/router';
-import { login } from '@/utils/requests';
+import { getUserConnectedDatas, login } from '@/utils/requests';
 import dashboardPaths from '@/utils/routes/dashboard_routes';
+import { UserContext } from '@/utils/context/User';
+import clientPaths from '@/utils/routes/client_routes';
 
 type Props = {}
 
 function Login({ }: Props) {
 
 
-    // const session = AuthCheck();
     const router = useRouter();
 
     const { data: session } = useSession();
@@ -35,10 +36,11 @@ function Login({ }: Props) {
     const [isLogingIn, setIsLogingIn] = useState(false);
     const [emailVerif, setEmailVerif] = useState(false);
     const [passwordVerif, setPasswordVerif] = useState(false);
-
+    const [errorMsg, setErrorMsg] = useState("");
 
     const handleChange = async (event: { target: { name: any; value: any; }; }) => {
         const { name, value } = event.target;
+        
         setUser((prevUser) => ({
             ...prevUser,
             [name]: value,
@@ -47,27 +49,45 @@ function Login({ }: Props) {
 
     
     async function handleLogin() {
-        setIsLogingIn(true);
 
-        // Write a condition to verify if email is empty or not and if password is empty and if password is less than 8 characters
         if (user.email == "") {
             setEmailVerif(true);
-        } else if (user.password == "" || user.password.length < 8) {
+        }else {
+            setEmailVerif(false);
+        }
+
+        
+        if (user.password == "" || user.password.length < 8) {
             setPasswordVerif(true);
+        } else {
+            setPasswordVerif(false);
         }
         
-        if (emailVerif == false && passwordVerif == false) {
+        if ( user.email != "" && (user.password.length > 8) ) {
+            setIsLogingIn(true);
             const response = await login(user);
-            console.log("user response", response)
+
+            if(response.status == 200) {
+                console.log(200);
+                
+                router.push(dashboardPaths.userMeetings);
+            } else {
+                setErrorMsg(response.data.detail);
+            }
+
             setIsLogingIn(false);
-            // router.push(dashboardPaths.userMeetings);
         }
-        // Write request to send data to API
-        // Handle Response and Data's from the API 
+       
     }
 
     useEffect(() => {
         session ? console.log(session.user) : console.log("no body");
+        
+        const tmpUser =  getUserConnectedDatas();
+
+        if (tmpUser.user != null) {
+            router.back();
+        }
     }, []);
 
     if (session) {
@@ -122,18 +142,19 @@ function Login({ }: Props) {
                         <div className="">
                             <h1 className="text-2xl font-extrabold">Connexion</h1>
                             <p>Commencez vos 30 jours gratuits</p>
+                            <p className="text-danger mt-2">{errorMsg ? errorMsg : ''}</p>
                         </div>
 
                         {/* Inputs section */}
                         <form className='flex flex-col gap-y-unit-md'>
                             <div className='flex flex-col gap-2'>
                                 <label className="text-sm font-bold after:content-['*'] after:ml-0.5 after:text-red-500" htmlFor="email">Email</label>
-                                <input type="email" id='email' name='email' value={user.email} className={`py-2 w-full border-2 rounded-lg px-4 md:text-base focus:ring-2 transition-all ease-in-out focus:outline   ${emailVerif == true ? 'focus:outline-danger border-danger focus:ring-danger' : 'focus:outline-primary/50 focus:ring-primary'}`} placeholder='Exple: John Doe@gmail.com' onChange={handleChange} />
+                                <input type="email" id='email' name='email' value={user.email} className={`py-2 w-full border-1 rounded-lg px-4 md:text-base focus:ring-1 transition-all ease-in-out focus:outline   ${emailVerif == true ? 'focus:outline-danger border-danger focus:ring-danger' : 'focus:outline-primary/50 focus:ring-primary'}`} placeholder='Exple: John Doe@gmail.com' onChange={handleChange} />
                             </div>
                             <div className='flex flex-col gap-1'>
                                 <label className='text-sm font-bold' htmlFor="password">Mot de passe <span className="text-danger">*</span></label>
                                 <div className='relative w-full'>
-                                    <input type={hidePassword ? "password" : "text"} id='password' name='password' value={user.password} className={`py-2 w-full border-2 rounded-lg px-4 md:text-base focus:ring-2 transition-all ease-in-out focus:outline   ${passwordVerif == true || (user.password != '' && user.password.length < 8) ? 'border-danger focus:ring-danger focus:outline-red-600/50' : 'focus:ring-primary focus:outline-primary/50'}`} placeholder='Ecrivez ici' onChange={handleChange} />
+                                    <input type={hidePassword ? "password" : "text"} id='password' name='password' value={user.password} className={`py-2 w-full border-1 rounded-lg px-4 md:text-base focus:ring-1 transition-all ease-in-out focus:outline   ${passwordVerif == true || (user.password != '' && user.password.length < 8) ? 'border-danger focus:ring-danger focus:outline-red-600/50' : 'focus:ring-primary focus:outline-primary/50'}`} placeholder='Ecrivez ici' onChange={handleChange} />
 
                                     <span className="hover:cursor-pointer hover:text-primary absolute inset-y-0 right-4 inline-flex items-center" onClick={() => { setHidePassword(!hidePassword) }}>
                                         {hidePassword == true ? (<Image src={eyeSvg} className="h-5 w-5 text-secondary" alt="eye-Svg" />) : (
@@ -141,7 +162,7 @@ function Login({ }: Props) {
                                         )}
                                     </span>
                                 </div>
-                                <p className={`${passwordVerif == true ? 'text-danger' : ''}`} >Doit être au moins 8 caractères.</p>
+                                <p className={`${(user.password != '' && user.password.length < 8)? 'text-danger' : ''}`} >Doit être au moins 8 caractères.</p>
                             </div>
 
                         </form>

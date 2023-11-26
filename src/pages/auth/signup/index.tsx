@@ -1,6 +1,6 @@
 import { Avatar, AvatarGroup, Button } from '@nextui-org/react';
 import Image from 'next/image';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 // Import images
 import eyeClosedSvg from "../../../../public/images/icons/eye-off.svg";
@@ -9,7 +9,7 @@ import googleSvg from "../../../../public/images/icons/google-color.svg";
 import logo from "../../../../public/images/logo.png";
 import Link from 'next/link';
 import { AuthCheck } from '@/utils/auth';
-import { createUser } from '@/utils/requests';
+import { createUser, getUserConnectedDatas } from '@/utils/requests';
 import axios from 'axios';
 import { open_api } from '@/utils/api';
 import { useRouter } from 'next/router';
@@ -18,7 +18,7 @@ import clientPaths from '@/utils/routes/client_routes';
 type Props = {}
 
 function Signup({ }: Props) {
-  
+
   const router = useRouter();
 
   const [hidePassword, setHidePassword] = useState(true);
@@ -43,18 +43,24 @@ function Signup({ }: Props) {
 
   async function handleSignup() {
     setIsSigningUp(true);
-    router.push(clientPaths.login);
+    // router.push(clientPaths.login);
     let response = await createUser(user);
 
     if (response != null) {
+      // On vérifi si le status est 200 on redirige vers le login
+      // On vérifi si le status est 400 on redirige 
+    } else {
       setIsSigningUp(false);
-      // Redirect to the login page
-      router.push(clientPaths.login);
     }
   }
 
+  useEffect(() => {
+    const tmpUser = getUserConnectedDatas();
 
-
+    if (tmpUser.user != null) {
+      router.back();
+    }
+  }, []);
 
   return (
     <div className="flex h-max lg:h-[93vh] bg-white">
