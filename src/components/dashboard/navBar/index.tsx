@@ -16,7 +16,7 @@ function AdminNavBar({ }: Props) {
         const testUser = datas ? JSON.parse(datas) : null;
         if (testUser){
             setUser(testUser.user);
-        console.log(user);
+            console.log(user);
         }
     },[])
     // console.log(user);
@@ -58,8 +58,10 @@ function AdminNavBar({ }: Props) {
                                     src: "",
                                 }}
                                 className="transition-transform flex-row-reverse"
-                                description={user ? (user.email) : ""}
-                                name={user ? (user.lastname + " " + user.firstname) : ""}
+                                // description={user ? (user.email) : ""}
+                                // name={user ? (user.lastname + " " + user.firstname) : ""}
+                                description="undefined"
+                                name="undefined"
                             />
                         </DropdownTrigger>
                         <DropdownMenu aria-label="User Actions" variant="flat">
