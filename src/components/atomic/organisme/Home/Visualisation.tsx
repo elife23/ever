@@ -21,7 +21,7 @@ function Visualisation({ }: Props) {
 
                         </div>
 
-                        <Typography className="mt-3 text-gray-600 dark:text-gray-400 flex-col gap-y-3 leading-loose text-center text-sm">
+                        <Typography className="mt-3 text-dark dark:text-gray-400 flex-col gap-y-3 leading-loose text-center text-sm">
                             Nous proposons un large éventail de types de diagrammes pour tous les cas d{"'"}utilisation. Voici quelques-unes de nos options les plus populaires. Et.., bien sûr, vous pouvez mélanger, assortir et expérimenter pour obtenir des bibliothèques de formes personnalisées qui répondent à vos besoins uniques.
                         </Typography>
                         <div className='py-5 w-full flex flex-col items-center lg:items-start lg:flex-row'>

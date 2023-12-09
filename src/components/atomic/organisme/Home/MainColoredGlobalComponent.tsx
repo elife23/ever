@@ -31,7 +31,7 @@ function MainBackgroundColoredGlobalComponent({title, subTitle, buttonLink, butt
 
               </div>
 
-              <Typography className="mt-3 text-gray-600 dark:text-gray-400 flex-col gap-y-3 leading-loose text-sm">
+              <Typography className="mt-3 text-dark dark:text-gray-400 flex-col gap-y-3 leading-loose text-sm">
                 {subTitle}
 
               </Typography>

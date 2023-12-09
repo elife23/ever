@@ -2,12 +2,12 @@ import Link from 'next/link'
 import React from 'react'
 // import logo from '../../../public/images/logo.png';
 import Image from 'next/image';
-import logo from '../../../../public/images/logo.png';
 import SpanAnimatedLine from '@/components/atomic/atoms/SpanAnimatedLine';
 import { BiLogoFacebook } from "react-icons/bi";
 import { BsFacebook, BsTwitter, BsInstagram, BsDiscord } from "react-icons/bs";
 import { useRouter } from 'next/router';
 import clientPaths from '@/utils/routes/client_routes';
+import importedImages from '@/utils/importedImg';
 
 type Props = {}
 
@@ -17,99 +17,128 @@ function MainFooter({ }: Props) {
 
 
     return (
-        // <footer className="w-full bg-tertiary flex flex-wrap gap-x-4 h-48 px-[1.357rem]" >
-        //     <div className='w-1/4 flex-1 h-max flex items-center justify-center gap-0'>
-        //         <Image src={logo} alt={'logo'} className="w-48 h-48" />
-        //         {/* <p className="font-ibm-plex-mono text-2xl text-[#5ABB71] font-bold"><span className="text-[#5ABB71] font-light text-base">ever</span>seed</p> */}
-        //         {/* <p className="font-bold text-xl "><span className="text-[#5ABB71] text-2xl">E</span>verseed</p> */}
-
-
-        //     </div>
-        //     <div className='w-1/4 flex-1 h-full  flex items-center'>
-        //         <h1 className='text-xl font-bold'>Contact</h1>
-        //         <div>
-
-        //         </div>
-        //     </div>
-        //     <div className='w-1/4 flex-1 h-full bg-purple-600'></div>
-        //     <div className='w-1/4 flex-1 h-full bg-blue-600'></div>
-        // </footer>
-
-
-        <footer className={`${currentPage == "/meetingRoom" ? 'hidden' : ''} bg-tertiary border-t flex justify-center items-center dark:bg-gray-900 w-full md:py-8`}>
+        <footer className={`${currentPage == "/meetingRoom" ? 'hidden' : ''} bg-white flex justify-center items-center dark:bg-gray-900 w-full md:py-8`}>
             <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
-                <div className="md:flex md:justify-between">
-                    <div className="mb-6 md:mb-0">
-                        <Link href="/" className="flex items-center lg:w-max">
-                            {/* <img src="https://flowbite.com/docs/images/logo.svg" className="h-8 mr-3" alt="FlowBite Logo" /> */}
-                            <Image src={logo} alt={'logo'} className="h-20 w-20" />
-                            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"><span className="text-[#5ABB71] text-3xl">E</span>verseed</span>
-                        </Link>
-                    </div>
+                <div className="md:flex flex-col items-center md:justify-between">
+
                     <div className="flex flex-wrap gap-8 sm:gap-6 sm:grid-cols-3">
                         <div className='flex flex-col gap-y-unit-md md:w-72'>
-                            <h2 className="text-sm font-semibold text-[#FFBF65] uppercase dark:text-white">Resources</h2>
-                            <p className='opacity-70 tracking-wide w-3/4 md:w-full '>Want to improve your skills? From video tutorials and step-by-step guides to live one-to-one sessions, Everseed has a learning solution to suit you.</p>
-                            <ul className="text-gray-500 dark:text-gray-400 font-medium">
+                            <h2 className="text-sm font-semibold text-dark uppercase dark:text-white">Navigation</h2>
+                            
+                            <ul className="text-gray-500 dark:text-gray-400 flex flex-col gap-y-2 font-medium">
                                 <li className="pb-2 group relative overflow-x-hidden w-max">
                                     <SpanAnimatedLine />
-                                    <Link href="" className="group-hover:text-[#FFBF65] transition-all duration-500">Video Tutorials</Link>
+                                    <Link href="" className="group-hover:text-dark transition-all duration-500">Présentation</Link>
                                 </li>
                                 <li className="pb-2 group relative overflow-x-hidden w-max">
                                     <SpanAnimatedLine />
-                                    <Link href="" className="group-hover:text-[#FFBF65] transition-all duration-500">Interactive Tutorials</Link>
+                                    <Link href="" className="group-hover:text-dark transition-all duration-500">Visioconférence</Link>
+                                </li>
+                                <li className="pb-2 group relative overflow-x-hidden w-max">
+                                    <SpanAnimatedLine />
+                                    <Link href="" className="group-hover:text-dark transition-all duration-500">Tableau de note collaboratif</Link>
+                                </li>
+                                <li className="pb-2 group relative overflow-x-hidden w-max">
+                                    <SpanAnimatedLine />
+                                    <Link href="" className="group-hover:text-dark transition-all duration-500">Séssions</Link>
+                                </li>
+                                <li className="pb-2 group relative overflow-x-hidden w-max">
+                                    <SpanAnimatedLine />
+                                    <Link href="" className="group-hover:text-dark transition-all duration-500">Espace utilisateurs</Link>
                                 </li>
                             </ul>
                         </div>
                         <div className="flex flex-col gap-y-unit-md md:w-60">
-                            <h2 className="text-sm font-semibold text-[#FFBF65] uppercase dark:text-white">Contact</h2>
-                            <p className='opacity-70 tracking-wide w-3/4 md:w-full '>Whether you need help, have feedback or want to book a personal demo, you can contact us any time!</p>
-                            <ul className="text-gray-500 dark:text-gray-400 font-medium gap-y-unit-sm">
+                            <h2 className="text-sm font-semibold text-dark uppercase dark:text-white">Utilisateurs</h2>
+                            <ul className="text-gray-500 dark:text-gray-400 flex flex-col gap-y-2 font-medium">
                                 <li className="pb-2 group relative overflow-x-hidden w-max">
                                     <SpanAnimatedLine />
-                                    <Link href="" className="group-hover:text-[#FFBF65] transition-all duration-500">Book a free personal demo</Link>
+                                    <Link href="" className="group-hover:text-dark transition-all duration-500">Professeurs</Link>
                                 </li>
                                 <li className="pb-2 group relative overflow-x-hidden w-max">
                                     <SpanAnimatedLine />
-                                    <Link href="" className="group-hover:text-[#FFBF65] transition-all duration-500">Leave us a review</Link>
+                                    <Link href="" className="group-hover:text-dark transition-all duration-500">Entrepreuneurs</Link>
                                 </li>
-
-                                <div className="flex  w-full py-1 items-center sm:justify-start gap-x-unit-xs sm:mt-0">
-                                    <a href="#" className=" text-gray-500 hover:text-[#FFBF65] dark:hover:text-white group p-1 border-2 border-secondary ">
-                                        <BsFacebook className="text-[#FFBF65] w-5 h-5 group-hover:-translate-y-1 group-hover:text-primary transition-all duration-300" />
-                                        {/* <span className="sr-only">Discord community</span> */}
-                                    </a>
-                                    <a href="#" className=" text-gray-500 hover:text-[#FFBF65] dark:hover:text-white group p-1 border-2 border-secondary">
-                                        <BsTwitter className="text-[#FFBF65] w-5 h-5 group-hover:-translate-y-1 group-hover:text-primary transition-all duration-300" />
-                                        {/* <span className="sr-only">Discord community</span> */}
-                                    </a>
-                                    <a href="#" className=" text-gray-500 hover:text-[#FFBF65] dark:hover:text-white group p-1 border-2 border-secondary">
-                                        <BsInstagram className="text-[#FFBF65] w-5 h-5 group-hover:-translate-y-1 group-hover:text-primary transition-all duration-300" />
-                                        {/* <span className="sr-only">Discord community</span> */}
-                                    </a>
-                                    <a href="#" className=" text-gray-500 hover:text-[#FFBF65] dark:hover:text-white group p-1 border-2 border-secondary">
-                                        <BsDiscord className="text-[#FFBF65] w-5 h-5 group-hover:-translate-y-1 group-hover:text-primary transition-all duration-300" />
-                                        {/* <span className="sr-only">Discord community</span> */}
-                                    </a>
-                                </div>
+                                <li className="pb-2 group relative overflow-x-hidden w-max">
+                                    <SpanAnimatedLine />
+                                    <Link href="" className="group-hover:text-dark transition-all duration-500">Influenceurs</Link>
+                                </li>
+                                <li className="pb-2 group relative overflow-x-hidden w-max">
+                                    <SpanAnimatedLine />
+                                    <Link href="" className="group-hover:text-dark transition-all duration-500">Créateurs de contenus</Link>
+                                </li>
                             </ul>
                         </div>
                         <div className='flex flex-col gap-y-unit-md md:w-72'>
-                            <h2 className="text-sm font-semibold text-[#FFBF65] uppercase dark:text-white">Legal</h2>
-                            <p className='opacity-70 tracking-wide w-3/4 md:w-full '>Find out about all the legal stuff here, how your diagrams are and will always remain your diagrams, and learn more about our market-leading Security.</p>
-                            <ul className="text-gray-500 dark:text-gray-400 font-medium">
+                            <h2 className="text-sm font-semibold text-dark uppercase dark:text-white">Spécifications</h2>
+                            <ul className="text-gray-500 flex flex-col gap-y-2 dark:text-gray-400 font-medium">
                                 <li className="pb-2 group relative overflow-x-hidden w-max">
                                     <SpanAnimatedLine />
-                                    <Link href={clientPaths.privacyPolicy} className="group-hover:text-[#FFBF65] transition-all duration-500">Privacy Policy</Link>
+                                    <Link href={clientPaths.privacyPolicy} className="group-hover:text-dark transition-all duration-500">Responsive</Link>
                                 </li>
 
                                 <li className="pb-2 group relative overflow-x-hidden w-max">
                                     <SpanAnimatedLine />
-                                    <Link href="#" className="group-hover:text-[#FFBF65] transition-all duration-500">Terms &amp; Conditions</Link>
+                                    <Link href="#" className="group-hover:text-dark transition-all duration-500">Interface intuitives</Link>
                                 </li>
+
+
+                                <li className="pb-2 group relative overflow-x-hidden w-max">
+                                <SpanAnimatedLine />
+                                <Link href="#" className="group-hover:text-dark transition-all duration-500">Contenu synchronisé</Link>
+                            </li>
+
+
+                            <li className="pb-2 group relative overflow-x-hidden w-max">
+                                <SpanAnimatedLine />
+                                <Link href="#" className="group-hover:text-dark transition-all duration-500">Facile à prendre en main</Link>
+                            </li>
+
+                                <li className="pb-2 group relative overflow-x-hidden w-max">
+                                <SpanAnimatedLine />
+                                <Link href="#" className="group-hover:text-dark transition-all duration-500">Politique de confidentialité</Link>
+                            </li>
 
                             </ul>
                         </div>
+
+                        <div className="flex flex-col gap-y-unit-md md:w-60">
+                        <h2 className="text-sm font-semibold text-dark uppercase dark:text-white">Contacts</h2>
+                        <p className='opacity-70 tracking-wide w-3/4 md:w-full '>Que vous ayez besoin d{"'"}aide, que vous ayez des commentaires ou que vous souhaitiez réserver une démonstration personnelle, vous pouvez nous contacter à tout moment !</p>
+                        <ul className="text-gray-500 dark:text-gray-400 flex flex-col gap-y-2 font-medium">
+                            
+                            <li className="pb-2 group relative overflow-x-hidden w-max">
+                                <SpanAnimatedLine />
+                                <Link href="" className="group-hover:text-dark transition-all duration-500">Laissez-nous un commentaire</Link>
+                            </li>
+
+                            <div className="flex  w-full py-1 items-center sm:justify-start gap-x-unit-xs sm:mt-0">
+                                <a href="#" className=" text-gray-500 hover:text-dark dark:hover:text-white group p-1 border-2 border-secondary ">
+                                    <BsFacebook className="text-dark w-5 h-5 group-hover:-translate-y-1 group-hover:text-primary transition-all duration-300" />
+                                    {/* <span className="sr-only">Discord community</span> */}
+                                </a>
+                                <a href="#" className=" text-gray-500 hover:text-dark dark:hover:text-white group p-1 border-2 border-secondary">
+                                    <BsTwitter className="text-dark w-5 h-5 group-hover:-translate-y-1 group-hover:text-primary transition-all duration-300" />
+                                    {/* <span className="sr-only">Discord community</span> */}
+                                </a>
+                                <a href="#" className=" text-gray-500 hover:text-dark dark:hover:text-white group p-1 border-2 border-secondary">
+                                    <BsInstagram className="text-dark w-5 h-5 group-hover:-translate-y-1 group-hover:text-primary transition-all duration-300" />
+                                    {/* <span className="sr-only">Discord community</span> */}
+                                </a>
+                                <a href="#" className=" text-gray-500 hover:text-dark dark:hover:text-white group p-1 border-2 border-secondary">
+                                    <BsDiscord className="text-dark w-5 h-5 group-hover:-translate-y-1 group-hover:text-primary transition-all duration-300" />
+                                    {/* <span className="sr-only">Discord community</span> */}
+                                </a>
+                            </div>
+                        </ul>
+                    </div>
+                    </div>
+
+                    <div className="mt-6 md:mt-12">
+                        <Link href="/" className="flex flex-col items-center lg:w-max">
+                            <Image src={importedImages.logo} alt={'logo'} className="w-12 h-26" />
+                            <p className="text-primary text-lg">ever<span className="font-bold text-primary text-lg">Seed</span> </p>
+                        </Link>
                     </div>
                 </div>
                 {/* <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />

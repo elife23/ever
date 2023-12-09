@@ -48,8 +48,8 @@ function Meeting() {
         const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(appID, serverSecret, roomID, randomID(5), "user.firstname");
         const zp = ZegoUIKitPrebuilt.create(kitToken);
 
-        // On active le mode d'écriture par défaut, qui normalement est à désactivé par défaut
-        ZegoSuperBoardManager.getInstance().enableHandwriting(true);
+        // // On active le mode d'écriture par défaut, qui normalement est à désactivé par défaut
+        // ZegoSuperBoardManager.getInstance().enableHandwriting(true);
         
 
         // Init the whiteboard
@@ -89,7 +89,8 @@ function Meeting() {
                 showAddImageButton: true,
                 showCreateAndCloseButton: true,
                 
-            }
+            },
+            
         });
     };
 

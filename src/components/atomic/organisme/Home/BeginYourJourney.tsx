@@ -15,7 +15,7 @@ function BeginYourJourney({ }: Props) {
                             <Typography fontVariation='semibold' className='text-xl md:text-2xl lg:text-2xl' >Que ça soit le direct, ou le différé, chacun de vos lecteurs vivra une expérience unique. Alors commencez votre voyage avec <span className='text-primary font-bold'>E</span>verseed</Typography>
                         </div>
                         <div className='text-center'>
-                            <Typography className="mt-3 text-gray-600 dark:text-gray-400 flex-col gap-y-3 leading-loose text-sm">
+                            <Typography className="mt-3 text-dark dark:text-gray-400 flex-col gap-y-3 leading-loose text-sm">
                                 Obtenez votre essai gratuit de 30 jours ou <br /> réservez simplement une démonstration pour une rencontre personnelle.
                             </Typography>
                         </div>

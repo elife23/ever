@@ -4,7 +4,7 @@ import LinkButton from '../../atoms/LinkButton'
 import Image from 'next/image';
 import ImportedSvgs from '@/utils/ImportedSvgs';
 import importedImages from '@/utils/importedImg';
-import PartOrganisme from '../PartOrganisme';
+import PartOrganisme from '../Card/PartOrganisme';
 import clientPaths from '@/utils/routes/client_routes';
 
 type Props = {}
@@ -25,9 +25,7 @@ function PartsSection({ }: Props) {
                     {/* Screen Recorder */}
                     {/* <PartOrganisme img={importedImages.whiteBoardImg} alt="Enregistrement d'écran" title={`Enregistrement d'écran`} body={'Conserver pour plus tard ou pour partager le contenu de vos séance de whiteboard et/ou visioconférences.'} link={clientPaths.meetingRoom} />  */}
                     <PartOrganisme img={importedImages.whiteBoardImg} alt="Enregistrement d'écran" title={`Engagement`} body={'Que ça soit le direct, ou le différé, chacun de vos lecteurs vivra une expérience unique.'} link={clientPaths.meetingRoom} />
-
-
-
+                    
                 </div>
             </div>
         </div>

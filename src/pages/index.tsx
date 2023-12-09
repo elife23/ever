@@ -9,6 +9,10 @@ import TrustedSection from '@/components/atomic/organisme/Home/TrustedSection';
 import Visualisation from '@/components/atomic/organisme/Home/Visualisation';
 import BeginYourJourney from '@/components/atomic/organisme/Home/BeginYourJourney';
 import PartsSection from '@/components/atomic/organisme/Home/PartsSection';
+import CollaborationCallSection from '@/components/atomic/organisme/Home/CollaborationCallSection';
+import SessionManSection from '@/components/atomic/organisme/Home/SessionManSection';
+import UserSpaceSection from '@/components/atomic/organisme/Home/UserSpaceSection';
+import TryAppSection from '@/components/atomic/organisme/Home/TryAppSection';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,29 +23,31 @@ export default function Home() {
     // >
     
     // </main>
-    <main className="flex min-h-screen flex-col bg-[#DCE1DE] justify-between">
+    <main className="flex min-h-screen flex-col bg-white justify-between">
       <MainHeader />
-      {/* <div className='py-5 w-full bg-white'/> */}
-      <PartsSection />
+      
+      <VideoCallSection /> 
 
-      {/* <div className='py-5 w-full'/> */}
-      <VideoCallSection />   {/* // Exprimez librement */}
+      <CollaborationCallSection />
+      
+      <SessionManSection />
 
-      {/* <div className='py-5 w-full'/> */}
-      <ProductiveSection />  {/* Gagnez en temps */}
+      <UserSpaceSection />
 
-      {/* <div className='py-5 w-full bg-white'/> */}
-      <VisualisationSection /> {/* Collaborer plus simplement */}
+      <TryAppSection />
+      
+      {/* <VisualisationSection />  */}
+      {/* Collaborer plus simplement */}
 
-      {/* <div className='py-5 w-full '/> */}
-      <TrustedSection /> 
+      
+      {/* <TrustedSection />  */}
 
-      {/* <div className='py-5 w-full bg-white'/> */}
+      
       {/* <Visualisation /> */}
-      {/* <div className='py-5 w-full'/> */}
-      <BeginYourJourney /> {/* Engagement */}
+      
+      {/* <BeginYourJourney /> */}
 
-      {/* {/* <div className='py-5 w-full bg-white'/> */}
+      {/* 
       {/* <PartsSection /> */}
     </main>
   )

@@ -1,8 +1,8 @@
 import ImportedSvgs from '@/utils/ImportedSvgs'
 import React from 'react'
-import Typography from '../atoms/Typography'
+import Typography from '../../atoms/Typography'
 import Image, { StaticImageData } from 'next/image'
-import LinkButton from '../atoms/LinkButton'
+import LinkButton from '../../atoms/LinkButton'
 
 type Props = {
     img: string | StaticImageData,
@@ -20,7 +20,7 @@ function PartOrganisme({ img = "", alt="part-image", title = "Default title", bo
 
             <div className='flex flex-col'>
                 <Typography fontVariation='semibold' className='text-base'>{title}</Typography>
-                <Typography className="mt-3 text-gray-600 dark:text-gray-400 flex-col leading-loose">
+                <Typography className="mt-3 text-dark dark:text-gray-400 flex-col leading-loose">
                     {body}
                 </Typography>
                 <LinkButton href={link} >{buttonLabel}</LinkButton>

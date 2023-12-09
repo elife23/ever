@@ -57,7 +57,7 @@ function Signup({ }: Props) {
   useEffect(() => {
     const tmpUser = getUserConnectedDatas();
 
-    if (tmpUser.user != null) {
+    if (tmpUser && tmpUser.user != null) {
       router.back();
     }
   }, []);
