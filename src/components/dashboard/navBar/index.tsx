@@ -14,10 +14,12 @@ function AdminNavBar({ }: Props) {
     useEffect(() => {
         const datas = localStorage.getItem("e-u-d");
         const testUser = datas ? JSON.parse(datas) : null;
-        setUser(testUser.user);
+        if (testUser){
+            setUser(testUser.user);
         console.log(user);
+        }
     },[])
-    console.log(user);
+    // console.log(user);
 
     return (
         <>
