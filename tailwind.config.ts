@@ -58,6 +58,7 @@ const config: Config = {
         "secondary": '#000000',
         "accentuation": '#FF96C5',
         "tertiary": '#E1E1E1',
+        "gray-four": '#DAB59E',
       },
       fontFamily: {
         'ibm-plex-mono': [

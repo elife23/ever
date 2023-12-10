@@ -7,7 +7,7 @@ import googleSvg from "../../../../public/images/icons/google-color.svg";
 import eyeClosedSvg from "../../../../public/images/icons/eye-off.svg";
 import eyeSvg from "../../../../public/images/icons/eye.svg";
 import Link from 'next/link';
-import { signIn, useSession } from 'next-auth/react';
+import { signIn, signOut, useSession } from 'next-auth/react';
 import { AuthCheck } from '@/utils/auth';
 import { redirect } from 'next/navigation';
 import { useRouter } from 'next/router';
@@ -70,13 +70,13 @@ function Login({ }: Props) {
             setIsLogingIn(true);
             const response = await login(user);
 
-            // if (response.status == 200) {
-            //     console.log(200);
+            if (response.status == 200) {
+                console.log(200);
 
-            //     router.push(dashboardPaths.userMeetings);
-            // } else {
-            //     setErrorMsg(response.data.detail);
-            // }
+                router.push(dashboardPaths.userMeetings);
+            } else {
+                setErrorMsg(response.data.detail);
+            }
 
             setIsLogingIn(false);
         }
@@ -94,7 +94,7 @@ function Login({ }: Props) {
     }, []);
 
     if (session) {
-        router.replace("/")
+        // router.replace("/")
     }
 
     function closeMessage() {
@@ -120,7 +120,7 @@ function Login({ }: Props) {
                         <div className='bg-white lg:w-full py-4 px-4 lg:px-0 rounded-lg lg:rounded-none flex flex-col w-full h-auto gap-y-4'>
 
                             <div className="">
-                                <h1 className="text-base lg:text-2xl font-extrabold text-gray text-center">Connexion</h1>
+                                <h1 className="text-lg lg:text-2xl font-extrabold text-gray text-center">Connexion</h1>
                                 {/* <p>Commencez vos 30 jours gratuits</p> */}
                                 {errorMsg && <div className="flex flex-row items-center justify-between rounded-md p-2 bg-[#FFD9D9] shadow-lg mt-2">
                                     <IoMdAlert className="rotate-180" size={25} style={{ fill: "#ff0000" }} />
@@ -135,12 +135,12 @@ function Login({ }: Props) {
                             <form className='flex flex-col gap-y-unit-xl lg:gap-y-unit-md'>
                                 <div className='flex flex-col gap-2'>
                                     <label className="text-sm font-bold after:content-['*'] after:ml-0.5 after:text-red-500 text-gray" htmlFor="email">Email</label>
-                                    <input type="email" id='email' name='email' value={user.email} className={`py-2 w-full border-1 rounded-lg px-4 md:text-base focus:ring-1 transition-all ease-in-out focus:outline   ${emailVerif == true ? 'focus:outline-danger border-danger focus:ring-danger' : 'focus:outline-gray-secondary/50 focus:ring-gray-secondary'}`} placeholder='Exple: John Doe@gmail.com' onChange={handleChange} />
+                                    <input type="email" id='email' name='email' value={user.email} className={`py-2 w-full border-1 border-gray  rounded-sm px-4 md:text-base focus:ring-1 transition-all ease-in-out focus:outline placeholder-gray-four  ${emailVerif == true ? 'focus:outline-danger border-danger focus:ring-danger' : 'focus:outline-gray-secondary/50 focus:ring-gray-secondary'}`} placeholder='Exple: John Doe@gmail.com' onChange={handleChange} />
                                 </div>
                                 <div className='flex flex-col gap-1'>
                                     <label className='text-sm font-bold text-gray' htmlFor="password">Mot de passe <span className="text-danger">*</span></label>
                                     <div className='relative w-full'>
-                                        <input type={hidePassword ? "password" : "text"} id='password' name='password' value={user.password} className={`py-2 w-full border-1 rounded-lg px-4 md:text-base focus:ring-1 transition-all ease-in-out focus:outline   ${passwordVerif == true || (user.password != '' && user.password.length < 8) ? 'border-danger focus:ring-danger focus:outline-red-600/50' : 'focus:ring-gray-secondary focus:outline-gray-secondary/50'}`} placeholder='Ecrivez ici' onChange={handleChange} />
+                                        <input type={hidePassword ? "password" : "text"} id='password' name='password' value={user.password} className={`py-2 w-full border-1 border-gray  rounded-sm px-4 md:text-base focus:ring-1 transition-all ease-in-out focus:outline placeholder-gray-four  ${passwordVerif == true || (user.password != '' && user.password.length < 8) ? 'border-danger focus:ring-danger focus:outline-red-600/50' : 'focus:ring-gray-secondary focus:outline-gray-secondary/50'}`} placeholder='Ecrivez ici' onChange={handleChange} />
 
                                         <span className="hover:cursor-pointer hover:text-primary absolute inset-y-0 right-4 inline-flex items-center" onClick={() => { setHidePassword(!hidePassword) }}>
                                             {hidePassword == true ? (<Image src={eyeSvg} className="h-5 w-5 text-secondary" alt="eye-Svg" />) : (
@@ -148,7 +148,7 @@ function Login({ }: Props) {
                                             )}
                                         </span>
                                     </div>
-                                    { (user.password != '' && user.password.length < 8) && <p className={`${(user.password != '' && user.password.length < 8) ? 'text-danger' : ''}`} >Doit être au moins 8 caractères.</p>}
+                                    { (user.password != '' && user.password.length < 8) && <p className={`${(user.password != '' && user.password.length < 8) ? 'text-danger' : 'text-gray'}`} >Doit être au moins 8 caractères.</p>}
                                 </div>
 
                             </form>
@@ -170,7 +170,7 @@ function Login({ }: Props) {
 
                             {/* Login buttons section */}
                             <div>
-                                <Button className="bg-gray-secondary w-full text-white" isLoading={isLogingIn} variant="flat" onClick={() => { handleLogin() }}
+                                <Button className="bg-gray-secondary w-full text-white font-medium rounded-md" isLoading={isLogingIn} variant="flat" onClick={() => { handleLogin() }}
                                 // disabled={email == '' || password == '' || password.length < 8 ? true : false} 
                                 >
                                     {isLogingIn == false ? "Se connecter" : "Veuillez patienter"}
@@ -181,7 +181,7 @@ function Login({ }: Props) {
                                 <div className="h-0.5 bg-tertiary w-1/2" /> <span className="md:text-base font-semibold mx-2">Ou</span><div className="h-0.5 bg-tertiary w-1/2" />
                             </div>
                             <div>
-                                <Button className="w-full font-bold bg-white border-2 py-4 text-sm md:text-base flex items-center justify-center" onClick={() => signIn("google")}>
+                                <Button className="w-full font-bold bg-white border-1 border-gray py-4 text-sm md:text-base flex items-center justify-center rounded-md" onClick={() => signIn("google")}>
                                     <Image src={googleSvg} className="h-3 w-3 lg:h-5 lg:w-5 text-gray" alt="google-svg" />
                                     <p>Se connecter avec google</p>
                                 </Button>
