@@ -70,13 +70,13 @@ function Login({ }: Props) {
             setIsLogingIn(true);
             const response = await login(user);
 
-            if (response.status == 200) {
-                console.log(200);
+            // if (response.status == 200) {
+            //     console.log(200);
 
-                router.push(dashboardPaths.userMeetings);
-            } else {
-                setErrorMsg(response.data.detail);
-            }
+            //     router.push(dashboardPaths.userMeetings);
+            // } else {
+            //     setErrorMsg(response.data.detail);
+            // }
 
             setIsLogingIn(false);
         }
